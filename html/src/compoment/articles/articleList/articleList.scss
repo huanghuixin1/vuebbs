@@ -1,0 +1,14 @@
+@import "../articleItem/articleItem";
+@import "../../loading/dropload";//下拉加载的样式
+
+.articleList {
+    margin: 0 6px 6px;
+    .articleList-loadData {
+        display: block;
+        text-align: center;
+        color: blue;
+        line-height: 2;
+        margin: 10px 0;
+        font-size: 16px;
+    }
+}

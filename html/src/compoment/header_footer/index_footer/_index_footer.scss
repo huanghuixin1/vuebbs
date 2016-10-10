@@ -1,0 +1,80 @@
+@import "../../../icon/iconfont";
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    background-color: #f9f9f9;
+    border-top: 1px solid #EBEBEB;
+
+    .bottomBar {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 40px;
+        padding: 5px 0;
+        text-align: center;
+        z-index: 9988;
+    }
+
+    .iconAnswer{
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        color: #769CDC;
+    }
+
+    .bottomIcon{
+        position: relative;
+        height: 40px;
+        margin-top: 5px;
+        font-size:20px;
+        .module{
+              width: 80px;
+              height: 60px;
+              position: absolute;
+              color: #769cdc;
+              text-decoration: none;
+              padding: 10px 5px 5px 5px;
+          }
+        //模版
+        .moduleIcon{
+            left:80px;
+        }
+        //发帖
+        .postIcon{
+            right: 50px;
+        }
+    }
+    //返回
+    .backBtn {
+        width: 20px;
+        height: 30px;
+        padding: 5px 20px 5px 5px;
+        border-right: 1px solid #d4d4d4;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+    //更多
+    .moreC{
+        width: 20px;
+        height: 30px;
+        padding: 5px 20px 5px 5px;
+        border-left: 1px solid #d4d4d4;
+        position: absolute;
+        right: 0;
+        top: 0;
+        .circle{
+            position: absolute;
+            top: 10px;
+            font-size:30px;
+            font-style: normal;
+            margin-right: 2px;
+            display: inline-block;
+            color: #769CDC;
+        }
+    }
+
+}

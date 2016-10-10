@@ -1,0 +1,248 @@
+@charset "utf-8";
+$designFont-Size: 108;
+
+
+
+@mixin col-6 {
+    width: 50%;
+    float: left;
+}
+
+
+$imported-modules: () !default;
+
+/// Module export mixin
+/// This mixin helps making sure a module is imported once and only once.
+/// @access public
+/// @param {String} $name - Name of exported module
+/// @param {Bool} $warn [true] - Warn when module has been already imported
+/// @require $imported-modules
+@mixin exports($name, $warn: true) {
+    @if (index($imported-modules, $name) == null) {
+        $imported-modules: append($imported-modules, $name) !global;
+        @content;
+    } @else if $warn == true {
+        @warn "Module `#{$name}` has already been imported.";
+    }
+}
+
+
+@function px2rem($pxValue, $htmlFontSize:-1) {
+    @if $htmlFontSize > 0 {
+        @return $pxValue/ $htmlFontSize * 1rem;
+    } @else {
+        @return $pxValue/ $designFont-Size * 1rem;
+    }
+}
+
+@function px2percent($pxValue, $screenWidth) {
+    @return $pxValue / $screenWidth * 100%;
+}
+
+@function getBorderColor() {
+    @return #009a44;
+}
+
+@function getImgPathPre() {
+    @return "{[imgPath]}";
+}
+
+//清除浮动
+@mixin clearFloatByAfter() {
+    &:after {
+        display: block;
+        content: "clear";
+        clear: both;
+        height: 0;
+        width: 100%;
+        overflow: hidden;
+    }
+}
+
+%linCount{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
+
+//设置总共显示几行
+@mixin lineCount($line) {
+    @extend %linCount;
+    -webkit-line-clamp: $line;
+}
+
+@mixin singline {
+    word-break: keep-all; /* 不换行 */
+    white-space: nowrap; /* 不换行 */
+    overflow: hidden; /* 内容超出宽度时隐藏超出部分的内容 */
+    text-overflow: ellipsis; /* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/
+}
+
+%singline {
+    @include singline;
+}
+
+@mixin clearInlineBlockMarginRight {
+    font-size: 0;
+    letter-spacing: -3px;
+
+    > * {
+        letter-spacing: 0;
+    }
+}
+
+//去除inline-block的右边距
+%clearInlineBlockMarginRight {
+    @include clearInlineBlockMarginRight;
+}
+
+//四条边框
+%borderByafter {
+    //border: 1px solid transparent;
+    position: relative;
+
+    &:before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        bottom: -50%;
+        left: -50%;
+        right: -50%;
+        -webkit-transform: scale(0.5);
+        transform: scale(0.5);
+        border-style: solid;
+        border-width: 1px;
+        border-color: blue;
+    }
+}
+
+@mixin border-bottomByAfter {
+    position: relative;
+    &:after {
+        content: "";
+        display: block;
+        transform-origin: 50% 100%;
+        border-bottom: 1px solid #ddd;
+        position: absolute;
+        bottom: 0;
+        left: px2rem(-500);
+        width: 150%;
+        z-index: 99;
+        line-height: 0;
+
+        @media only screen and (-webkit-min-device-pixel-ratio: 2) {
+            transform: scaleY(0.5);
+        }
+    }
+}
+
+//底部边框
+%border-bottomByAfter {
+    @include border-bottomByAfter;
+
+}
+
+@mixin border-topByBefore {
+    position: relative;
+    &:before {
+        content: "";
+        display: block;
+        height: 1px;
+        transform-origin: 50% 50%;;
+        border-top: 1px solid #ddd;
+        position: absolute;
+        top: 0;
+        left: px2rem(-500);
+        width: 150%;
+        z-index: 99;
+
+        @media only screen and (-webkit-min-device-pixel-ratio: 2) {
+            transform: scaleY(0.5);
+        }
+
+    }
+}
+
+//顶部的边框
+%border-topByBefore {
+    @include border-topByBefore;
+}
+
+//左边的边框
+@mixin border-leftByBefore {
+    position: relative;
+    &:before {
+        content: "";
+        display: block;
+        width: 1px;
+        height: 100%;
+        transform-origin: 0 50%;
+        border-left: 1px solid #ddd;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 99;
+
+        @media only screen and (-webkit-min-device-pixel-ratio: 2) {
+            transform: scaleX(0.5);
+        }
+    }
+}
+
+%border-leftByBefore {
+    @include border-leftByBefore;
+}
+
+@mixin border-rightByAfter {
+    position: relative;
+    &:after {
+        content: "";
+        display: block;
+        width: 1px;
+        height: 100%;
+        transform-origin: 100% 50%;
+        border-right: 1px solid #ddd;
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 99;
+
+        @media only screen and (-webkit-min-device-pixel-ratio: 2) {
+            transform: scaleX(0.5);
+        }
+
+    }
+}
+
+//右边的边框
+%border-rightByAfter {
+    @include border-rightByAfter;
+}
+
+@mixin justify {
+    text-align: justify;
+    text-align-last: justify;
+    line-height: 0;
+
+    &:after {
+        content: "";
+        display: inline-block;
+        position: relative;
+        height: 1px;
+        line-height: 0;
+        width: 100%;
+        z-index: -1;
+        vertical-align: top;
+    }
+
+    > * {
+        text-align: left;
+        text-align-last: left;
+    }
+}
+
+//两端对齐
+%justify {
+    @include justify;
+}

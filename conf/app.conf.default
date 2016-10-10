@@ -1,0 +1,14 @@
+appname = note_online
+httpaddr = "127.0.0.1"
+httpport = 8888
+runmode ="dev"
+autorender = false
+recoverpanic = false
+viewspath = "myview"
+gzipCompressLevel = 9
+
+
+mysqluser = "root"
+mysqlpass = "root123"
+mysqlurls = "127.0.0.1"
+mysqldb   = "note_online"
