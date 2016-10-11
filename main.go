@@ -9,14 +9,19 @@ import (
 	"path"
 	"path/filepath"
 	//"./db"
+	"fmt"
 )
 
 func main() {
 	//db.TestQuery()
-	b := baa.New()
+	b := baa.Default()
 	router.Init(b)
 	router.Router(b)
-	b.Run(":8899")
+
+
+	config := b.GetDI("config").(map[string]string)
+	fmt.Println(config)
+	b.Run(":" + config["httpport"])
 }
 
 func test() {

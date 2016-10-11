@@ -3,6 +3,10 @@ package db
 import (
 	"testing"
 	"time"
+	"os"
+	"path"
+	"io/ioutil"
+	"strings"
 )
 
 //[UserInfoDAL.Login]
@@ -38,4 +42,34 @@ func Test_timetamp(t *testing.T) {
 	timetamp := time.Now().Unix() - int64(offset)
 
 	t.Log(timetamp)
+}
+
+//时间戳测试
+func Test_getCname(t *testing.T) {
+	cname := CategoriesDAL.GetNameById(1)
+
+	t.Log(cname)
+}
+
+func Test_io(t *testing.T) {
+
+	currPath, _ := os.Getwd()
+	file, _ := os.Open(path.Join(currPath, "../conf/app.ini"))
+	defer file.Close()
+	resu, _ := ioutil.ReadAll(file)
+	strResu := string(resu);
+
+	splits := strings.Split(strResu, "\n")
+
+	ret := make(map[string]string)
+	for _, v := range splits {
+		if strings.Trim(v, " ") == "" {
+			continue
+		}
+		keyval := strings.Split(v, "=")
+
+		ret[strings.Trim(keyval[0], " ")] = strings.Trim(keyval[1], " ")
+	}
+
+	t.Log(ret["mysqldb"])
 }

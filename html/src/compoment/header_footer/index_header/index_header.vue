@@ -16,7 +16,9 @@
     </header>
 </template>
 <script>
-    import {mapGetters, mapActions} from 'vuex'
+    import {mapGetters, mapActions} from 'vuex';
+    import {getQueryString} from "../../utls/urlUtls";
+
     export default {
         computed: mapGetters({
             title: 'title',
@@ -28,6 +30,11 @@
             this.$store.dispatch("SetTotalMembers");
             let cid = this.$route.query["cid"] || 0;
             this.$store.dispatch("SetTotalArticles", {cid: cid});
+
+            //初始化标题
+//            获取url参数
+            let category = getQueryString("cid");
+            this.$store.dispatch("SetTitle", cid);
 
             //路由变化后
             this.$router.afterEach(transition => {

@@ -2,8 +2,21 @@ import * as types from "./types";
 import * as userService from "../../../service/userinfosService";
 import * as articleService from "../../../service/articlesService";
 
-//设置标题
-export const SetTitle = ({commit, state}, title) => {
+/**
+ * 设置标题
+ * @param commit
+ * @param state
+ * @param cid 板块id
+ * @constructor
+ */
+export const SetTitle = ({commit, state}, cid) => {
+    //拿到cid去获取该模块的名称
+    if(!cid){
+        return;
+    }
+
+    let title = "";
+
     commit(types.SetTitle, title);
 };
 

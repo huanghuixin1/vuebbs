@@ -16,6 +16,7 @@ func Router(app *baa.Baa) {
 	app.SetAutoHead(true)
 	app.SetAutoTrailingSlash(true)
 
+
 	//procHtml(app)
 
 	app.Get("/", func(c *baa.Context) {
@@ -59,5 +60,9 @@ func Router(app *baa.Baa) {
 
 	app.Group("/userinfosApi", func() {
 		app.Get("/count", controllers.UsersController.GetCount)
+	})
+
+	app.Group("/categoriesApi", func() {
+		app.Get("/getNameById", controllers.CategoriesController.GetNameByCid)
 	})
 }
