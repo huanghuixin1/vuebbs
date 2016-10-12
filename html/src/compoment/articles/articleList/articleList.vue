@@ -1,17 +1,22 @@
 <template>
 
     <article>
+        <v_header></v_header>
         <v_dropload></v_dropload>
         <article class="articleList" ref="articlelist">
-            <v_article_item v-for="item in listData" track-by="$index" :item="item"></v_article_item>
+            <v_article_item v-for="item in listData" :item="item"></v_article_item>
 
             <a class="articleList-loadData" @click="loadBottom()" ref="loadbottom">点击加载</a>
         </article>
 
-        <a href="/testSecond.html">测试跳转</a>
+        <v_footer></v_footer>
     </article>
 </template>
 <script>
+
+    import v_header from '../../header_footer/index_header/index_header.vue';
+    import v_footer from '../../header_footer/index_footer/index_footer.vue';
+
     import v_article_item from "../articleItem/articleItem.vue";
     import v_dropload from "../../loading/dropload.vue"; //下拉加载组件
     import store from "./store";
@@ -24,10 +29,15 @@
             listData: 'articleList'
         }),
         components: {
-            v_article_item, v_dropload
+            v_article_item, v_dropload, v_header, v_footer
         },
-        created() {
-            cid = this.$route.query["cid"] || 0; //获取到cid
+        beforeCreate() {
+            //先清空列表数据
+            this.$store.dispatch("ClearList");
+
+            //获取到cid
+            cid = this.$route.query["cid"] || 0;
+            //先重置内容
             this.$store.dispatch("setArticleList", {cidOrData: cid, minId: 0, maxId: 0});
         },
         mounted() {
@@ -45,7 +55,7 @@
                         setLoaded();
                     }
                 })
-            })
+            });
         },
         methods: {
             //底部滚动加载

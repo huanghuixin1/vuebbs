@@ -15,6 +15,13 @@ const routes = [
         }
     },
     {
+        path: "/categories/list", ////板块列表
+        component: (resolve)=> {
+            requireCss("/compoment/categories//list/list.css");
+            require(["../compoment/categories/list/list.vue"], resolve);
+        }
+    },
+    {
         path: "/userinfo",
         component: (resolve) => {
             requireCss("/compoment/userinfo/index.css");

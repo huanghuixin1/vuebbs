@@ -4,19 +4,34 @@ import (
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"github.com/jinzhu/gorm"
 	"fmt"
+	"gopkg.in/baa.v1"
 )
 
 type dbhelper struct{}
 
 var DbHelper = dbhelper{}
 
+//初始化链接字符串
+var connStr string = ""
+
 //打开数据库
 func openDb() *gorm.DB {
-	db, err := gorm.Open("mysql", "root:root123@tcp(127.0.0.1:3306)/note_online?charset=utf8mb4")
+	//如果连接字符串为空 则去初始化
+	if connStr == "" {
+		initConnstr()
+	}
+	db, err := gorm.Open("mysql", connStr)
 	if err != nil {
 		fmt.Println("数据库打开出错", err)
 	}
 	return db
+}
+
+//初始化连接字符串
+func initConnstr() {
+	var b = baa.Default()
+	var config = b.GetDI("config").(map[string]string)
+	connStr = config["mysqluser"] + ":" + config["mysqlpass"] + "@tcp(" + config["mysqlhost"] + ":" + config["mysqlport"] + ")/" + config["mysqldb"] + "?charset=utf8mb4"
 }
 
 //

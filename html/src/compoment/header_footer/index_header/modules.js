@@ -1,9 +1,10 @@
-import {SetTitle,SetTotalMembers,SetTotalArticles} from "./types";
+import {SetTitle, SetTotalMembers, SetTotalArticles, SetIsShowDetail} from "./types";
 
 const state = {
     title: "热门推荐",
-    totalArticles:999999, //当前模块的总数量
-    totalMembers: 99999 //总会员数量
+    totalArticles: 999999, //当前模块的总数量
+    totalMembers: 99999, //总会员数量
+    isShowHeaderDetail: true // 是否显示头部的详情信息(总会员 总帖子数量)
 };
 
 const mutations = {
@@ -20,6 +21,11 @@ const mutations = {
     //设置[当前板块]总帖子数量
     [SetTotalArticles](state, total){
         state.totalArticles = parseInt(total);
+    },
+
+    //是否显示头部的详情信息
+    [SetIsShowDetail](state, isShow){
+        state.isShowHeaderDetail = isShow;
     }
 };
 
