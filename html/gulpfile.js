@@ -22,7 +22,7 @@ const DEBUG = process.argv[2] !== "build"
 
 gulp.task("test", ()=> {
     //如果是开发模式 则进行持续构建
-   console.log( path.join(__dirname, "src/vendor/ajax.js"))
+    console.log(path.join(__dirname, "src/vendor/ajax.js"))
 })
 
 
@@ -101,10 +101,10 @@ gulp.task("html", DEBUG ? "" : ["js"], ()=> {
 //sass编译为css
 gulp.task("css", DEBUG ? "" : ["html"], ()=> {
     return gulp.src(cssSrc)
-        .pipe(gulp_sourcemaps.init())
+        .pipe(gulpif(DEBUG, gulp_sourcemaps.init())) //如果debug则生成sourcemap
         .pipe(sass({outputStyle: DEBUG ? "expand" : "compressed"}))
         .pipe(autoprefixer({browserslist: ["iOS9", "Android >= 4.4"]}))
-        .pipe(gulp_sourcemaps.write("dist"))
+        .pipe(gulpif(DEBUG, gulp_sourcemaps.write("dist"))) //如果debug则生成sourcemap
         .pipe(gulp.dest("dist"))
         .pipe(gulpif(!DEBUG, md5(8, ["./dist/**/*.html", "./dist/**/*.js"])))
 
@@ -165,12 +165,12 @@ gulp.task("js", ()=> {
 
             eslint: {
                 configFile: path.join(__dirname, ".eslintrc.js"),
-                ignorePath:  path.join(__dirname, ".eslintignore")
+                ignorePath: path.join(__dirname, ".eslintignore")
             },
 
             resolve: {
                 extensions: ["", ".js"],
-                alias:{
+                alias: {
                     "ajax": path.join(__dirname, "src/vendor/ajax.js")
                 }
             },

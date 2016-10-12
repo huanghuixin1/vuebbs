@@ -46,16 +46,16 @@ func Router(app *baa.Baa) {
 	//	c.String(200, "ok")
 	//})
 
-	app.Get("/test", func(b * baa.Context) {
-		slice := make([]string,0, 100)
+	app.Get("/test", func(b *baa.Context) {
+		slice := make([]string, 0, 100)
 		slice = append(slice, "asd")
-		resu , _ := json.Marshal(slice)
+		resu, _ := json.Marshal(slice)
 		b.JSON(200, string(resu))
 	})
 
 	app.Group("/articlesApi", func() {
 		app.Get("/getbycid", controllers.ArticlesController.GetByCid)
-		app.Get("/count",controllers.ArticlesController.GetCoundByCid)
+		app.Get("/count", controllers.ArticlesController.GetCoundByCid)
 	})
 
 	app.Group("/userinfosApi", func() {
@@ -64,5 +64,6 @@ func Router(app *baa.Baa) {
 
 	app.Group("/categoriesApi", func() {
 		app.Get("/getNameById", controllers.CategoriesController.GetNameByCid)
+		app.Get("/getListName", controllers.CategoriesController.GetListName)
 	})
 }

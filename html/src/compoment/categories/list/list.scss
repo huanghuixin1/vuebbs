@@ -1,0 +1,25 @@
+@import "../../header_footer/index_header/index_header";
+@import "../../header_footer/footer_onlyback/footer_onlyback";
+
+.categories-list {
+    > a {
+        text-decoration: none;
+        color: #333;
+        display: block;
+        vertical-align: top;
+        border-bottom: 1px solid #ededed;
+        background: #fff;
+        padding: 10px 0 10px 10px;
+
+        > h2 {
+            font-size: 20px;
+            margin-bottom: 6px;
+        }
+
+        > i {
+            color: #999;
+            font-size: 12px;
+        }
+
+    }
+}

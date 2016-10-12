@@ -1,23 +1,28 @@
 import * as types from "./types";
 import * as userService from "../../../service/userinfosService";
 import * as articleService from "../../../service/articlesService";
+import * as categoriesService from "../../../service/categoriesService";
 
 /**
  * 设置标题
  * @param commit
  * @param state
  * @param cid 板块id
+ * @param title 标题
  * @constructor
  */
-export const SetTitle = ({commit, state}, cid) => {
+export const SetTitle = ({commit, state}, {cid, title}) => {
     //拿到cid去获取该模块的名称
-    if(!cid){
-        return;
+    if (cid) {
+        //去请求数据
+        categoriesService.getNameById({
+            cid, success: rep=> {
+                commit(types.SetTitle, rep.Data);
+            }
+        });
+    } else if (title) {
+        commit(types.SetTitle, title);
     }
-
-    let title = "";
-
-    commit(types.SetTitle, title);
 };
 
 /**
@@ -59,4 +64,9 @@ export const SetTotalArticles = ({commit, state}, options) => {
     } else {
         commit(types.SetTotalArticles, total);
     }
+};
+
+//是否显示头部的详情信息
+export const SetIsShowHeaderDetail = ({commit, state}, {isShow}) => {
+    commit(types.SetIsShowDetail, isShow);
 };

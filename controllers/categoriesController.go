@@ -19,3 +19,10 @@ func (this *categoriesController) GetNameByCid(b *baa.Context) {
 
 	b.JSON(200, returnStatus.ReturnStatus{Status:returnStatus.Ok, Data:cname})
 }
+
+//获取板块列表名字和主题数量
+func (this *categoriesController) GetListName(b *baa.Context) {
+	resu := db.CategoriesDAL.GetListName()
+
+	b.JSON(200, returnStatus.ReturnStatus{Status:returnStatus.Ok, Data:resu})
+}

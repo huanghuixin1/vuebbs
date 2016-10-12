@@ -26,3 +26,9 @@ export const setArticleList = ({commit, state}, {cidOrData, minId, maxId, callba
         });
     }
 };
+
+
+//清除列表数据
+export const ClearList = ({commit})=>{
+    commit(types.ClearList);
+} ;

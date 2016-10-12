@@ -1,4 +1,4 @@
-import {SetList} from "./types";
+import {SetList,ClearList} from "./types";
 
 const state = {
     listData: [] //列表数据
@@ -13,6 +13,10 @@ const mutations = {
         } else {
             state.listData = listData.concat(state.listData);
         }
+    },
+    //清除list数据
+    [ClearList](state){
+        state.listData = [];
     }
 };
 
