@@ -2,8 +2,7 @@
     <section class="articleItem">
 
         <!--发帖人信息-->
-
-        <a class="articleItem-author" v-bind:href="'/userinfos/userdetail/' + item.UserId">
+        <router-link :to="{ path: '/userinfos/userdetail/' + item.UserId}" class="articleItem-author">
             <!--左边头像-->
             <img src="http://uc.discuz.net/avatar.php?uid=2810018&size=small"/>
 
@@ -14,10 +13,10 @@
 
                 <p>{{item.CreateTime | tamp2span}}</p>
             </address>
-        </a>
+        </router-link>
 
         <!--帖子摘要内容-->
-        <a class="articleItem-content">
+        <router-link :to="{ path: '/articles/detail/' + item.Id}" class="articleItem-content">
             <!--标题-->
             <h2>
                 {{item.Title}}
@@ -33,7 +32,7 @@
                 <img src="/imgs/icon_replay.png"/>
                 <i>999</i>
             </div>
-        </a>
+        </router-link>
     </section>
 </template>
 <script>

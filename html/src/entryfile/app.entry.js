@@ -37,6 +37,13 @@ const routes = [
     {
         path: "/articles/list",
         component: v_articleList
+    },
+    {
+        path: "/articles/detail/:id",
+        component: (resolve) => {
+            requireCss("/compoment/articles/articleDetail/articleDetail.css");
+            require(["../compoment/articles/articleDetail/articleDetail.vue"], resolve);
+        }
     }];
 
 const router = new VueRouter({

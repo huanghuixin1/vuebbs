@@ -14,13 +14,13 @@
 
 .fade-enter-active,
 .fade-leave-active {
-    transition: all .5s
+    transition: all .3s
 }
 
 .fade-enter {
-    opacity: 0;
+    transform: translateX(-100%);
 }
 
 .fade-leave-active {
-    transform: translateX(-100%);
+    opacity: 0;
 }
