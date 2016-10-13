@@ -3,12 +3,15 @@
 
         <!-- 路由外链 -->
         <article class="main">
-            <router-view></router-view>
+            <transition name="fade" mode="out-in">
+                <router-view></router-view>
+
+                <!--<div class="loading-index">加载中...</div>-->
+            </transition>
         </article>
     </div>
 </template>
 
 <script>
-    export default{
-    }
+    export default{}
 </script>

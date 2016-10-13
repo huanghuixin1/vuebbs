@@ -1,9 +1,11 @@
 # 项目说明
 jy0322007
 
+* [点击在线访问demo](http://bbs.hhx666.cf)
+
 ## GO
 服务器端开发接口环境,数据库使用 **maraidb** ,缓存使用 **redis**
-
+> 编译命令: GOOS=linux GOARCH=amd64 go build
 
 ## node.js
 ```

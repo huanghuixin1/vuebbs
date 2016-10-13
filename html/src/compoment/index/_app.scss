@@ -1,8 +1,26 @@
 @charset "utf-8";
-
 @import "../header_footer/index_header/index_header";
 @import "../header_footer/index_footer/index_footer";
-
-.main{
+.main {
     padding-bottom: 50px;
+}
+
+.loading-index {
+    position: fixed;
+    top: 30%;
+    height: 30px;
+    background: #ddd;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: all .5s
+}
+
+.fade-enter {
+    opacity: 0;
+}
+
+.fade-leave-active {
+    transform: translateX(100%);
 }

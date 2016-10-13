@@ -7,7 +7,7 @@ import (
 	//"../entity"
 	//"fmt"
 	//"net/http"
-
+	"github.com/baa-middleware/gzip"
 	"../controllers"
 	"encoding/json"
 )
@@ -16,6 +16,7 @@ func Router(app *baa.Baa) {
 	app.SetAutoHead(true)
 	app.SetAutoTrailingSlash(true)
 
+	app.Use(gzip.Gzip(gzip.Options{CompressionLevel: 4}))
 
 	//procHtml(app)
 

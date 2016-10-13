@@ -8,23 +8,36 @@
 
     <title>iScroll demo: probe</title>
 
+    <style>
+        .parent {
+            background: #ddd;
+            position: relative;
 
+        }
+
+        .child {
+            background: red;
+            position: absolute;
+            height: 50%;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
-<div>点击有效果</div>
+<div class="parent">
+    <div class="child"></div>
+
+
+</div>
 </body>
 </html>
 
 <script>
-    var div = document.querySelector("div");
-    div.addEventListener("click", function () {
-        console.log("okokoko");
-    })
-
-    setTimeout(function () {
-        console.log(div.getEventListeners)
-
-        getEventLis
-    });
+    var height = 100;
+    document.querySelector(".parent").style.height = height + "px";
+    document.body.onclick = function () {
+        document.querySelector(".parent").style.height = height + "px";
+        height += 100;
+    }
 
 </script>

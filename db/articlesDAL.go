@@ -4,8 +4,8 @@ import (
 	"../dto/articles"
 	"strings"
 	"strconv"
-	"fmt"
 	"math"
+	"fmt"
 )
 
 type articlesDAL struct {
@@ -68,6 +68,7 @@ func (this *articlesDAL)GetListByCategoryId(cid int, size int, minId int, maxId 
 		fmt.Println("获取失败", err)
 		return nil, err
 	}
+
 
 	//rows, err := DbHelper.Query(sql)
 	defer rows.Close()
