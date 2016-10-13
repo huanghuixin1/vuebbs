@@ -69,7 +69,9 @@ func initConfig() map[string]string {
 		}
 		keyval := strings.Split(v, "=")
 
-		ret[strings.Trim(keyval[0], " ")] = strings.Trim(strings.Trim(keyval[1], " "), "\"")
+		if len(keyval) >= 2 {
+			ret[strings.Trim(keyval[0], " ")] = strings.Trim(keyval[1], " ")
+		}
 	}
 
 	fmt.Println(ret)

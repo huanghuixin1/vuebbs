@@ -133,7 +133,7 @@ gulp.task("js", ()=> {
         }
 
         entries["common/global"] = "./src/common/global.js";
-        entries["common/vendor"] = ["vue", "vuex", "vue-resource", "./src/common/vendor.js"];
+        entries["common/vendor"] = ["vue", "vuex",  "./src/common/vendor.js"];
 
         console.log(entries);
         return entries;
