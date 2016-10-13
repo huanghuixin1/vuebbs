@@ -15,7 +15,8 @@ import (
 
 func Init(b *baa.Baa) {
 	b.Use(crossHeader())
-
+	config := initConfig()
+	b.SetDI("config", config)
 	b.Static(
 		"/",
 		"html/dist",
@@ -28,20 +29,19 @@ func Init(b *baa.Baa) {
 		Extensions: []string{".html", ".tmpl"},
 	}))
 
+
 	//配置缓存
 	b.SetDI("cache", cache.New(cache.Options{
 		Name:     "redis",
 		Prefix:   "note_online_",
 		Adapter:  "redis",
 		Config:    map[string]interface{}{
-			"host":     "127.0.0.1",
-			"port":     "6379",
-			"password": "redis8114359",
+			"host":     config["redishost"],
+			"port":     config["redisport"],
+			"password": config["redispwd"],
 			"poolsize": 10,
 		},
 	}))
-
-	b.SetDI("config",initConfig())
 }
 
 func crossHeader() baa.HandlerFunc {
@@ -52,7 +52,7 @@ func crossHeader() baa.HandlerFunc {
 }
 
 //初始化配置文件
-func initConfig() map[string]string{
+func initConfig() map[string]string {
 	currPath, _ := os.Getwd()
 	file, _ := os.Open(path.Join(currPath, "conf/app.ini"))
 	defer file.Close()
@@ -64,7 +64,7 @@ func initConfig() map[string]string{
 	ret := make(map[string]string)
 	for _, v := range splits {
 
-		if strings.Trim(v, " ") == "" || v[0] == '#'{
+		if strings.Trim(v, " ") == "" || v[0] == '#' {
 			continue
 		}
 		keyval := strings.Split(v, "=")

@@ -41,6 +41,7 @@ func (this *categoriesDAL) GetListName() []categories.CategoriesName {
 				c.id
 			order by c.id DESC `
 	rows, _ := db.Raw(sql).Rows()
+	defer rows.Close()
 
 	listRet := make([]categories.CategoriesName,0,20)
 	for rows.Next(){

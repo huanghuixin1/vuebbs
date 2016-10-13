@@ -99,3 +99,31 @@ func (this *articlesDAL)GetCountByCid(cid int) int {
 
 	return count
 }
+
+func (this *articlesDAL)GetDetail(id int) *dto.ArticleItem {
+	db := openDb()
+	defer db.Close()
+
+	sql := `SELECT
+				articles.id,
+				articles.ATitle,
+				articles.Fk_Cid,
+				articles.Fk_userId,
+				articles.CreateTime,
+				articles.AContent,
+				u.NickName
+			FROM
+				articles
+			RIGHT JOIN userinfos u ON articles.Fk_userId = u.id
+			WHERE
+				u.IsDelete = 0
+			AND articles.IsDelete = 0
+			AND articles.Id = ? `
+
+	row := db.Raw(sql, id).Row()
+
+	articleItem := dto.ArticleItem{}
+
+	row.Scan(&articleItem)
+	return &articleItem
+}

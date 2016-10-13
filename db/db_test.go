@@ -60,6 +60,15 @@ func Test_GetArticleListByCid(t *testing.T) {
 	}
 }
 
+
+//[ArticlesDAL.GetDetail]
+func Test_getdetail(t *testing.T) {
+	initConfig()
+	ret := ArticlesDAL.GetDetail(2)
+	t.Log(ret)
+}
+
+
 //[UserInfoDAL.GetById]测试获取用户信息
 func Test_getuser(t *testing.T) {
 	t.Log(UserInfoDAL.GetById(1))
