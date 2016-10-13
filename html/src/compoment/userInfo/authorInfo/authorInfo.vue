@@ -2,7 +2,7 @@
 <template>
     <router-link :to="{ path: '/userinfos/userdetail/' + authorinfo.UserId}" class="authorInfo">
         <!--左边头像-->
-        <img v-bind:src="authorinfo.HeaderImg"/>
+        <img v-bind:src="headerImg"/>
 
         <!--右边作者介绍-->
         <address>
@@ -15,8 +15,14 @@
 
 <script>
     import _ from "../../utls/filters";
+    import config from "../../utls/config"
 
     export default{
-        props:["authorinfo"]
+        computed: {
+            headerImg(){ //处理没有上传头像的默认头像问题
+                return this.authorinfo.HeaderImg || config.defaltHeaderImg;
+            }
+        },
+        props: ["authorinfo"]
     }
 </script>

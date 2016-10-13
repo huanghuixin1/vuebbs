@@ -13,7 +13,6 @@ type userInfoDAL struct {
 
 var UserInfoDAL = userInfoDAL{}
 
-
 //注册用户
 func (this *userInfoDAL)Regist(user *entity.UserInfo) {
 	//初始化用户信息

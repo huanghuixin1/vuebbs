@@ -133,7 +133,7 @@ gulp.task("js", ()=> {
         }
 
         entries["common/global"] = "./src/common/global.js";
-        entries["common/vendor"] = ["vue", "vuex",  "./src/common/vendor.js"];
+        entries["common/vendor"] = ["vue", "vuex", "./src/common/vendor.js"];
 
         console.log(entries);
         return entries;
@@ -187,6 +187,12 @@ gulp.task("js", ()=> {
                 }),
                 new webpack.optimize.OccurenceOrderPlugin(),
 
+                new webpack.DefinePlugin({
+                    'process.env': {
+                        NODE_ENV: DEBUG ? '"debug"' : '"production"'
+                    }
+                }),
+                //生成资源文件的键值对
                 assetsPluginInstance
             ]
         }))

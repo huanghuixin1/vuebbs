@@ -1,38 +1,72 @@
-.articleDetail-container{
-    
-}
+@import "../../utls/mixins";
 
-.articleDetail{
-    padding: 0 10px 10px;
+.articleDetail-container {
+    padding-bottom: 20px;
     background: #fff;
 
-    .author-container{
-        line-height: 50px;
-        height:50px;
-        position: relative;
+    @at-root {
+        .articleDetail {
+            padding: 0 10px 10px;
 
+            .author-container {
+                line-height: 50px;
+                height: 50px;
+                position: relative;
+
+                > * {
+                    vertical-align: middle;
+                }
+
+                .authorInfo {
+                    line-height: 1.6em;
+                }
+
+                span {
+                    display: inline-block;
+                    right: 30px;
+                    position: absolute;
+                }
+            }
+
+            > h1 {
+                background: #fff;
+                font-size: 18px;
+                line-height: 36px;
+                font-weight: bolder;
+                color: #333;
+            }
+        }
+
+    }
+
+    footer {
+        @extend %clearInlineBlockMarginRight;
 
         >*{
-            vertical-align: middle;
+            vertical-align: top;
+        }
+        .footer-back {
+            width: px2percent(40, 375);
         }
 
-        .authorInfo{
-            line-height: 1.6em;
-        }
-
-        span{
+        .footer-replay {
+            line-height: 40px;
             display: inline-block;
-            right:30px;
-            position: absolute;
+            width: px2percent(290, 375);
+            text-align: center;
+            font-size: 16px;
         }
-    }
 
-
-    >h1{
-        background: #fff;
-        font-size: 18px;
-        line-height: 36px;
-        font-weight: bolder;
-        color: #333;
+        .footer-option {
+            display: inline-block;
+            width: px2percent(40, 375);
+            line-height: 40px;
+            border-left: 1px solid #ededed;
+            font-size: 16px;
+            text-align: center;
+        }
     }
 }
+
+
+
