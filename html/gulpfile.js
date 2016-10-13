@@ -133,7 +133,7 @@ gulp.task("js", ()=> {
         }
 
         entries["common/global"] = "./src/common/global.js";
-        entries["common/vendor"] = ["vue", "vuex", "vue-resource", "./src/common/vendor.js"];
+        entries["common/vendor"] = ["vue", "vuex", "./src/common/vendor.js"];
 
         console.log(entries);
         return entries;
@@ -144,7 +144,6 @@ gulp.task("js", ()=> {
             watch: DEBUG,
             entry: entries("src/**/*.entry.js"),// entries("js/**/*.js"),
             output: {
-
                 filename: "[name]" + (DEBUG ? "" : "-[chunkhash:8]") + ".js"
             },
             module: {
@@ -162,12 +161,10 @@ gulp.task("js", ()=> {
                     }
                 ]
             },
-
             eslint: {
                 configFile: path.join(__dirname, ".eslintrc.js"),
                 ignorePath: path.join(__dirname, ".eslintignore")
             },
-
             resolve: {
                 extensions: ["", ".js"],
                 alias: {
@@ -190,6 +187,12 @@ gulp.task("js", ()=> {
                 }),
                 new webpack.optimize.OccurenceOrderPlugin(),
 
+                new webpack.DefinePlugin({
+                    'process.env': {
+                        NODE_ENV: DEBUG ? '"debug"' : '"production"'
+                    }
+                }),
+                //生成资源文件的键值对
                 assetsPluginInstance
             ]
         }))

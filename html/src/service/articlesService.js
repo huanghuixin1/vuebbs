@@ -1,5 +1,5 @@
 import config from "../compoment/utls/config";
-import ajax from "ajax";
+import * as ajaxUtls from "./ajaxUtls";
 
 //url前缀
 const urlPre = config.host + "/articlesApi";
@@ -12,11 +12,7 @@ const urlPre = config.host + "/articlesApi";
  */
 export function getCount(cid, callback, errCallback) {
     let url = urlPre + "/count?cid=" + cid;
-    ajax().get(url).then((response, xhr)=> {
-        callback && callback(response);
-    }).catch(function (response, xhr) {
-        errCallback && errCallback(response);
-    });
+    ajaxUtls.sendGet(url, callback, errCallback);
 }
 
 /**
@@ -29,9 +25,16 @@ export function getCount(cid, callback, errCallback) {
  */
 export function getListByCid(cid, minId, maxId, callback, errCallback) {
     let url = urlPre + "/getbycid?cid=" + cid + "&minId=" + minId + "&maxId=" + maxId;
-    ajax().get(url).then((rep)=> {
-        callback && callback(rep);
-    }).catch(rep=> {
-        errCallback && errCallback(rep);
-    });
+    ajaxUtls.sendGet(url, callback, errCallback);
+}
+
+/**
+ * 获取帖子详情
+ * @param id
+ * @param success 成功回调
+ * @param err 失败会滴啊
+ */
+export function getDetail({id, success, err}) {
+    let url = urlPre + "/getDetail?id=" + id;
+    ajaxUtls.sendGet(url, success, err);
 }

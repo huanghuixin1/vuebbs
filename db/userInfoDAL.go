@@ -3,6 +3,8 @@ package db
 import (
 	"../entity"
 	"database/sql"
+	"../utls"
+	"../entity/userlevel"
 )
 
 type userInfoDAL struct {
@@ -10,6 +12,19 @@ type userInfoDAL struct {
 }
 
 var UserInfoDAL = userInfoDAL{}
+
+//注册用户
+func (this *userInfoDAL)Regist(user *entity.UserInfo) {
+	//初始化用户信息
+	user.CreateTime = utls.TimeUtls.GetGTMTimeTamp()
+	user.Level = userlevel.Normal
+	user.IsDelete = false
+
+	db := openDb()
+	defer db.Close()
+
+	db.Create(user)
+}
 
 //登录方法
 func (this *userInfoDAL)Login(loginName string, email string, pwd string) (*entity.UserInfo, error) {

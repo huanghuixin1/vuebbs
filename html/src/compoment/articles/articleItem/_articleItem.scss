@@ -1,4 +1,5 @@
 @import "../../utls/mixins";
+@import "../../userInfo/authorInfo/authorInfo";//作者信息
 
 @include exports("articles/articleItem") {
     .articleItem {
@@ -10,39 +11,8 @@
         padding: 10px 10px 8px;
         color: #333;
 
-        //作者信息
-        .articleItem-author {
-            display: block;
+        a{
             text-decoration: none;
-
-            //左边的头像
-            > img {
-                border-radius: 50%;
-                width: 35px;
-                height: 35px;
-            }
-
-            //右边的作者介绍
-            address {
-                font-size: 14px;
-                margin-left: 8px;
-                display: inline-block;
-
-                //等级
-                i {
-                    line-height: 1.5;
-                    display: inline-block;
-                    background: #8dc56a;
-                    padding: 0 3px;
-                    color: white;
-                    border-radius: 5px;
-                }
-
-                > p {
-                    color: #999;
-                    font-size: 12px;
-                }
-            }
         }
 
         //内容摘要
@@ -54,12 +24,11 @@
             h2 {
                 font-size: 16px;
                 margin: 6px 0;
-
+                color: #333;
             }
 
             //摘要
             p {
-
                 font-size: 14px;
                 color: #999;
             }

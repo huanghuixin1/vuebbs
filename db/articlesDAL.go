@@ -4,8 +4,8 @@ import (
 	"../dto/articles"
 	"strings"
 	"strconv"
-	"fmt"
 	"math"
+	"fmt"
 )
 
 type articlesDAL struct {
@@ -33,7 +33,8 @@ func (this *articlesDAL)GetListByCategoryId(cid int, size int, minId int, maxId 
 				articles.Fk_Cid,
 				articles.Fk_userId,
 				articles.CreateTime,
-				u.NickName
+				u.NickName,
+				u.HeaderImg
 			FROM
 				articles
 			RIGHT JOIN userinfos u ON articles.Fk_userId = u.id
@@ -64,13 +65,12 @@ func (this *articlesDAL)GetListByCategoryId(cid int, size int, minId int, maxId 
 	sql = strings.Replace(sql, "{0}", cidWhere, 1)
 
 	rows, err := db.Raw(sql, minId, maxId, size).Rows()
+	defer rows.Close()
+
 	if err != nil {
 		fmt.Println("获取失败", err)
 		return nil, err
 	}
-
-	//rows, err := DbHelper.Query(sql)
-	defer rows.Close()
 
 	temp_articleItem := dto.ArticleItem{}
 	slice_articles := make([]dto.ArticleItem, size)
@@ -97,4 +97,41 @@ func (this *articlesDAL)GetCountByCid(cid int) int {
 	}
 
 	return count
+}
+
+/**
+	获取帖子详情
+ */
+func (this *articlesDAL)GetDetail(id int) (*dto.ArticleItem, error) {
+	db := openDb()
+	defer db.Close()
+
+	sql := `SELECT
+				articles.id,
+				articles.ATitle,
+				articles.Fk_Cid,
+				articles.Fk_userId,
+				articles.CreateTime,
+				articles.AContent,
+				u.NickName,
+				u.HeaderImg
+			FROM
+				articles
+			RIGHT JOIN userinfos u ON articles.Fk_userId = u.id
+			WHERE
+				u.IsDelete = 0
+			AND articles.IsDelete = 0
+			AND articles.Id = ? `
+
+	rows, err := db.Raw(sql, id).Rows()
+	defer rows.Close()
+	if err != nil {
+		return nil, err
+	}
+
+	temp_articleItem := dto.ArticleItem{}
+	slice_articles := make([]dto.ArticleItem, 1)
+	temp_articleItem.Rows2Entites(db, rows, slice_articles, temp_articleItem)
+
+	return &slice_articles[0],nil
 }

@@ -1,7 +1,7 @@
 <!--只有一个返回按钮的页脚-->
 <template>
-    <footer class="footer-onlyback">
-        <a @click="back()"> &lt; </a>
+    <footer class="footer-common">
+        <a @click="back()" class="footer-back"> &lt; </a>
     </footer>
 </template>
 

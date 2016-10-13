@@ -7,13 +7,14 @@ import (
 
 type ArticleItem struct {
 	Id         int                               //id
-	Title      string `gorm:"column:ATitle"`      //标题
+	Title      string `gorm:"column:ATitle"`     //标题
 	Summary    string `gorm:"column:Summary"`    //摘要
 	Cid        int    `gorm:"column:Fk_Cid"`     //类别id
 	CreateTime int    `gorm:"column:CreateTime"` //发布时间
 	UserId     int    `gorm:"column:Fk_userId"`  //发布者id
 	NickName   string `gorm:"column:NickName"`   //发布者昵称
-	HeaderImg string `gorm:"column:HeaderImg"`   //发布者头像
+	HeaderImg  string `gorm:"column:HeaderImg"`  //发布者头像
+	AContent   string `gorm:"column:AContent"`   //帖子内容
 }
 
 func (this *ArticleItem)Rows2Entites(db *gorm.DB, rows *sql.Rows, slice []ArticleItem, model ArticleItem) (int, error) {

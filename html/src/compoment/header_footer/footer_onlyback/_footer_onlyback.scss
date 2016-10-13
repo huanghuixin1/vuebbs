@@ -1,18 +1,21 @@
-.footer-onlyback {
-    position: fixed;
-    bottom: 0;
-    background: #f9f9f9;
-    height: 40px;
-
-    > a {
-        font-size: 16px;
-        color: #769CDC;
-        display: inline-block;
-        width: 30px;
+@include exports("compoment/headerfooter/footeronlyback"){
+    .footer-common {
+        position: fixed;
+        bottom: 0;
+        background: #f9f9f9;
         height: 40px;
-        line-height: 40px;
-        border-right: 1px solid #ddd;
-        text-align: center;
-        vertical-align: top;
+        color: #769cdc;
+
+        .footer-back {
+            font-size: 16px;
+            color: #769CDC;
+            display: inline-block;
+            width: 30px;
+            height: 40px;
+            line-height: 40px;
+            border-right: 1px solid #ddd;
+            text-align: center;
+            vertical-align: top;
+        }
     }
 }

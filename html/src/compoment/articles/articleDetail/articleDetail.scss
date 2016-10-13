@@ -1,0 +1,72 @@
+@import "../../utls/mixins";
+
+.articleDetail-container {
+    padding-bottom: 20px;
+    background: #fff;
+
+    @at-root {
+        .articleDetail {
+            padding: 0 10px 10px;
+
+            .author-container {
+                line-height: 50px;
+                height: 50px;
+                position: relative;
+
+                > * {
+                    vertical-align: middle;
+                }
+
+                .authorInfo {
+                    line-height: 1.6em;
+                }
+
+                span {
+                    display: inline-block;
+                    right: 30px;
+                    position: absolute;
+                }
+            }
+
+            > h1 {
+                background: #fff;
+                font-size: 18px;
+                line-height: 36px;
+                font-weight: bolder;
+                color: #333;
+            }
+        }
+
+    }
+
+    footer {
+        @extend %clearInlineBlockMarginRight;
+
+        >*{
+            vertical-align: top;
+        }
+        .footer-back {
+            width: px2percent(40, 375);
+        }
+
+        .footer-replay {
+            line-height: 40px;
+            display: inline-block;
+            width: px2percent(290, 375);
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .footer-option {
+            display: inline-block;
+            width: px2percent(40, 375);
+            line-height: 40px;
+            border-left: 1px solid #ededed;
+            font-size: 16px;
+            text-align: center;
+        }
+    }
+}
+
+
+
