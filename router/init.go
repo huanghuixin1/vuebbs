@@ -16,6 +16,7 @@ import (
 func Init(b *baa.Baa) {
 	b.Use(crossHeader())
 	config := initConfig()
+	fmt.Println(config)
 	b.SetDI("config", config)
 	b.Static(
 		"/",
@@ -57,7 +58,7 @@ func initConfig() map[string]string {
 	file, _ := os.Open(path.Join(currPath, "conf/app.ini"))
 	defer file.Close()
 	resu, _ := ioutil.ReadAll(file)
-	strResu := string(resu);
+	strResu := strings.Replace(string(resu), "\r", "", -1);
 
 	splits := strings.Split(strResu, "\n")
 

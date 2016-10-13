@@ -32,6 +32,7 @@
             v_article_item, v_dropload, v_header, v_footer
         },
         beforeCreate() {
+            this.$store.dispatch("SetIsShowHeaderDetail", {isShow: true});//设置显示信息
             //先清空列表数据
             this.$store.dispatch("ClearList");
 
