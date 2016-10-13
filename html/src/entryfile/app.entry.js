@@ -24,8 +24,8 @@ const routes = [
     {
         path: "/userinfo",
         component: (resolve) => {
-            requireCss("/compoment/userinfo/index.css");
-            require(["../compoment/userinfo/index.vue"], resolve);
+            requireCss("/compoment/userInfo/index.css");
+            require(["../compoment/userInfo/index.vue"], resolve);
         }
     },
     {
