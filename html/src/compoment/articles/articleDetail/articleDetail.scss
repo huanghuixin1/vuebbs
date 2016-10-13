@@ -1,3 +1,38 @@
-.articleDetail{
+.articleDetail-container{
     
+}
+
+.articleDetail{
+    padding: 0 10px 10px;
+    background: #fff;
+
+    .author-container{
+        line-height: 50px;
+        height:50px;
+        position: relative;
+
+
+        >*{
+            vertical-align: middle;
+        }
+
+        .authorInfo{
+            line-height: 1.6em;
+        }
+
+        span{
+            display: inline-block;
+            right:30px;
+            position: absolute;
+        }
+    }
+
+
+    >h1{
+        background: #fff;
+        font-size: 18px;
+        line-height: 36px;
+        font-weight: bolder;
+        color: #333;
+    }
 }

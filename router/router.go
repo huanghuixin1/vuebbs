@@ -37,6 +37,7 @@ func Router(app *baa.Baa) {
 	//用户相关
 	app.Group("/userinfosApi", func() {
 		app.Get("/count", controllers.UsersController.GetCount)// 获取用户总数
+		app.Post("/regist", controllers.UsersController.Regist)//注册用户
 	})
 
 	//板块相关

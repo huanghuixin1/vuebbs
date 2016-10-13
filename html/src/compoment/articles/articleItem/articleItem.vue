@@ -2,18 +2,7 @@
     <section class="articleItem">
 
         <!--发帖人信息-->
-        <router-link :to="{ path: '/userinfos/userdetail/' + item.UserId}" class="articleItem-author">
-            <!--左边头像-->
-            <img src="http://uc.discuz.net/avatar.php?uid=2810018&size=small"/>
-
-
-            <!--右边作者介绍-->
-            <address>
-                {{item.NickName}} <i>lv1</i>
-
-                <p>{{item.CreateTime | tamp2span}}</p>
-            </address>
-        </router-link>
+        <v_authorinfo :authorinfo="item"></v_authorinfo>
 
         <!--帖子摘要内容-->
         <router-link :to="{ path: '/articles/detail/' + item.Id}" class="articleItem-content">
@@ -36,8 +25,12 @@
     </section>
 </template>
 <script>
-    import _ from "../../utls/filters";
+    import v_authorinfo from "../../userInfo/authorInfo/authorInfo.vue";
+
     export default{
-        props: ["item"]
+        props: ["item"],
+        components: {
+            v_authorinfo
+        }
     }
 </script>

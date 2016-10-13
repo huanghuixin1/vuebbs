@@ -33,7 +33,8 @@ func (this *articlesDAL)GetListByCategoryId(cid int, size int, minId int, maxId 
 				articles.Fk_Cid,
 				articles.Fk_userId,
 				articles.CreateTime,
-				u.NickName
+				u.NickName,
+				u.HeaderImg
 			FROM
 				articles
 			RIGHT JOIN userinfos u ON articles.Fk_userId = u.id
@@ -112,7 +113,8 @@ func (this *articlesDAL)GetDetail(id int) (*dto.ArticleItem, error) {
 				articles.Fk_userId,
 				articles.CreateTime,
 				articles.AContent,
-				u.NickName
+				u.NickName,
+				u.HeaderImg
 			FROM
 				articles
 			RIGHT JOIN userinfos u ON articles.Fk_userId = u.id

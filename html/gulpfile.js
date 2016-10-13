@@ -144,7 +144,6 @@ gulp.task("js", ()=> {
             watch: DEBUG,
             entry: entries("src/**/*.entry.js"),// entries("js/**/*.js"),
             output: {
-
                 filename: "[name]" + (DEBUG ? "" : "-[chunkhash:8]") + ".js"
             },
             module: {
@@ -162,12 +161,10 @@ gulp.task("js", ()=> {
                     }
                 ]
             },
-
             eslint: {
                 configFile: path.join(__dirname, ".eslintrc.js"),
                 ignorePath: path.join(__dirname, ".eslintignore")
             },
-
             resolve: {
                 extensions: ["", ".js"],
                 alias: {

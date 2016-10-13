@@ -44,6 +44,7 @@ func (this *articlesController) GetCoundByCid(b *baa.Context) {
 	b.JSON(200, returnStatus.ReturnStatus{Status:returnStatus.Ok, Data:count})
 }
 
+//获取详情
 func (this *articlesController) GetDetail(b *baa.Context) {
 	id := b.QueryInt("id")
 
@@ -51,7 +52,7 @@ func (this *articlesController) GetDetail(b *baa.Context) {
 
 	var returnRet returnStatus.ReturnStatus
 
-	if err != nil {
+	if err == nil {
 		returnRet = returnStatus.ReturnStatus{Status:returnStatus.Ok, Data:ret}
 	} else {
 		returnRet = returnStatus.ReturnStatus{Status:returnStatus.Error, Data:err}
