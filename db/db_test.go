@@ -64,7 +64,8 @@ func Test_GetArticleListByCid(t *testing.T) {
 //[ArticlesDAL.GetDetail]
 func Test_getdetail(t *testing.T) {
 	initConfig()
-	ret := ArticlesDAL.GetDetail(2)
+	ret,err := ArticlesDAL.GetDetail(2)
+	t.Log(err)
 	t.Log(ret)
 }
 

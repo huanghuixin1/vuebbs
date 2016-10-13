@@ -4,7 +4,6 @@ import (
 	"gopkg.in/baa.v1"
 	"../db"
 	"../dto/returnStatus"
-	"fmt"
 )
 
 type articlesController struct{}
@@ -40,8 +39,23 @@ func (this *articlesController) GetByCid(b *baa.Context) {
 func (this *articlesController) GetCoundByCid(b *baa.Context) {
 	cid := b.QueryInt("cid")
 
-	fmt.Println("cid:", cid)
 	count := db.ArticlesDAL.GetCountByCid(cid)
 
 	b.JSON(200, returnStatus.ReturnStatus{Status:returnStatus.Ok, Data:count})
+}
+
+func (this *articlesController) GetDetail(b *baa.Context) {
+	id := b.QueryInt("id")
+
+	ret, err := db.ArticlesDAL.GetDetail(id)
+
+	var returnRet returnStatus.ReturnStatus
+
+	if err != nil {
+		returnRet = returnStatus.ReturnStatus{Status:returnStatus.Ok, Data:ret}
+	} else {
+		returnRet = returnStatus.ReturnStatus{Status:returnStatus.Error, Data:err}
+	}
+
+	b.JSON(200, returnRet)
 }

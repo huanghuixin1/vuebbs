@@ -9,62 +9,39 @@ import (
 	//"net/http"
 	"github.com/baa-middleware/gzip"
 	"../controllers"
-	"encoding/json"
 )
 
 func Router(app *baa.Baa) {
 	app.SetAutoHead(true)
 	app.SetAutoTrailingSlash(true)
 
-	app.Use(gzip.Gzip(gzip.Options{CompressionLevel: 4}))
+	//压缩比例
+	app.Use(gzip.Gzip(gzip.Options{CompressionLevel: 6}))
 
-	//procHtml(app)
-
+	//转到app.html
 	app.Get("/", func(c *baa.Context) {
 		c.Redirect(301, "/app.html")
 	})
 
-	//app.Get("/userinfo", func(c *baa.Context) {
-	//	a := c.Query("a")
-	//	c.String(200, a + ",1")
-	//})
-
-	//app.Get("/test2", func(c *baa.Context) {
-	//	var listUser [2]*entity.UserInfo
-	//
-	//
-	//	c.Set("data", listUser)
-	//	//u:= &entity.UserInfo{Age:11, Name:"hhx"}
-	//	//c.Set("data", u)
-	//
-	//	c.HTML(200, "userInfo/index")
-	//})
-
-	//app.Get("/test", func(c *baa.Context) {
-	//	ca := c.DI("cache").(cache.Cacher)
-	//
-	//	ca.Set("test", "baa", 100)
-	//	c.String(200, "ok")
-	//})
-
+	//测试使用
 	app.Get("/test", func(b *baa.Context) {
-		slice := make([]string, 0, 100)
-		slice = append(slice, "asd")
-		resu, _ := json.Marshal(slice)
-		b.JSON(200, string(resu))
 	})
 
+	//帖子信息相关
 	app.Group("/articlesApi", func() {
-		app.Get("/getbycid", controllers.ArticlesController.GetByCid)
-		app.Get("/count", controllers.ArticlesController.GetCoundByCid)
+		app.Get("/getbycid", controllers.ArticlesController.GetByCid) //通过板块id获取列表
+		app.Get("/count", controllers.ArticlesController.GetCoundByCid) // 获取对应板块的帖子爽
+		app.Get("/getDetail", controllers.ArticlesController.GetDetail) //获取详情
 	})
 
+	//用户相关
 	app.Group("/userinfosApi", func() {
-		app.Get("/count", controllers.UsersController.GetCount)
+		app.Get("/count", controllers.UsersController.GetCount)// 获取用户总数
 	})
 
+	//板块相关
 	app.Group("/categoriesApi", func() {
-		app.Get("/getNameById", controllers.CategoriesController.GetNameByCid)
-		app.Get("/getListName", controllers.CategoriesController.GetListName)
+		app.Get("/getNameById", controllers.CategoriesController.GetNameByCid)// 根据id获取板块名字
+		app.Get("/getListName", controllers.CategoriesController.GetListName) //获取板块列表
 	})
 }

@@ -64,14 +64,12 @@ func (this *articlesDAL)GetListByCategoryId(cid int, size int, minId int, maxId 
 	sql = strings.Replace(sql, "{0}", cidWhere, 1)
 
 	rows, err := db.Raw(sql, minId, maxId, size).Rows()
+	defer rows.Close()
+
 	if err != nil {
 		fmt.Println("获取失败", err)
 		return nil, err
 	}
-
-
-	//rows, err := DbHelper.Query(sql)
-	defer rows.Close()
 
 	temp_articleItem := dto.ArticleItem{}
 	slice_articles := make([]dto.ArticleItem, size)
@@ -100,7 +98,10 @@ func (this *articlesDAL)GetCountByCid(cid int) int {
 	return count
 }
 
-func (this *articlesDAL)GetDetail(id int) *dto.ArticleItem {
+/**
+	获取帖子详情
+ */
+func (this *articlesDAL)GetDetail(id int) (*dto.ArticleItem, error) {
 	db := openDb()
 	defer db.Close()
 
@@ -120,10 +121,15 @@ func (this *articlesDAL)GetDetail(id int) *dto.ArticleItem {
 			AND articles.IsDelete = 0
 			AND articles.Id = ? `
 
-	row := db.Raw(sql, id).Row()
+	rows, err := db.Raw(sql, id).Rows()
+	defer rows.Close()
+	if err != nil {
+		return nil, err
+	}
 
-	articleItem := dto.ArticleItem{}
+	temp_articleItem := dto.ArticleItem{}
+	slice_articles := make([]dto.ArticleItem, 1)
+	temp_articleItem.Rows2Entites(db, rows, slice_articles, temp_articleItem)
 
-	row.Scan(&articleItem)
-	return &articleItem
+	return &slice_articles[0],nil
 }
