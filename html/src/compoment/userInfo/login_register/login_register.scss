@@ -1,0 +1,65 @@
+  html {
+    min-height: 100%;
+        body{
+          min-height: 100%;
+          background-color: #578cc0;
+                .user_login {
+                  text-align: center;
+                  font-family: 微软雅黑, Helvetica;
+                  color: #acc0d3;
+                  font-size: 15px;
+                  margin: 0;
+                  .logo_dz {
+                    text-align: center;
+                    padding: 60px 0 30px;
+                    > img {
+                      width: 78px;
+                      height: 78px;
+                    }
+                    > h2 {
+                      font-size: 17px;
+                      font-weight: bold;
+                      color: #ffffff;
+                    }
+                  }
+                  .login_set {
+                    background: none fixed;
+                    overflow: hidden;
+                    border: none;
+                    padding: 0;
+                    input[type="text"], input[type="password"] {
+                      padding: 10px 15px;
+                      position: relative;
+                      width: 236px;
+                      height: 17px;
+                      margin: 0 0 10px 0;
+                      font-size: 15px;
+                      background-color: #e5f2ff;
+                      border-radius: 2px;
+                      color: #acc0d3;
+                      border: none;
+                      outline: medium;
+                    }
+                    .lb_lq_btn {
+                      outline: medium;
+                      border: medium none;
+                      background:-webkit-gradient(linear, 0% 0%, 0% 100%,from(#a6e355), to(#72c137));
+                      border-radius: 2px;
+                      color: #fff;
+                      font-size: 18px;
+                      height: 37px;
+                      box-shadow: 1px 2px 2px #5182b2;
+                      text-shadow: 1px 1px 2px #51a721;
+                      width: 266px;
+                      margin-top: 10px;
+                    }
+                    .to_choose{
+                      width: 266px;
+                      text-align: right;
+                      margin: 20px auto;
+                    }
+                  }
+                }
+        }
+
+  }

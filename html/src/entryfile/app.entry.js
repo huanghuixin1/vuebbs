@@ -4,6 +4,7 @@ import Vue from "vue";
 import {requireCss} from "../common/_require";
 import v_articleList from "../compoment/articles/articleList/articleList.vue";
 
+
 Vue.use(VueRouter);
 var App = Vue.extend(v_app);
 
@@ -43,6 +44,18 @@ const routes = [
         component: (resolve) => {
             requireCss("/compoment/articles/articleDetail/articleDetail.css");
             require(["../compoment/articles/articleDetail/articleDetail.vue"], resolve);
+        }
+    },{
+        path:"/login",
+        component:(resolve)=>{
+            requireCss("/compoment/userInfo/login_register/login_register.css");
+            require(["../compoment/userInfo/login_register/login_page/login_page.vue"], resolve);
+        }
+    },{
+        path:"/register",
+        component:(resolve)=>{
+            requireCss("/compoment/userInfo/login_register/login_register.css");
+            require(["../compoment/userInfo/login_register/register_page/register_page.vue"], resolve);
         }
     }];
 
