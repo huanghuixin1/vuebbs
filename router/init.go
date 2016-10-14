@@ -11,9 +11,12 @@ import (
 	"io/ioutil"
 	"strings"
 	"fmt"
+	"../utls"
+	"encoding/gob"
 )
 
 func Init(b *baa.Baa) {
+	gob.Register(map[string]interface{}{})
 	b.Use(crossHeader())
 	config := initConfig()
 	fmt.Println(config)
@@ -34,7 +37,7 @@ func Init(b *baa.Baa) {
 	//配置缓存
 	b.SetDI("cache", cache.New(cache.Options{
 		Name:     "redis",
-		Prefix:   "note_online_",
+		Prefix:   "vuebbs_",
 		Adapter:  "redis",
 		Config:    map[string]interface{}{
 			"host":     config["redishost"],
@@ -45,10 +48,14 @@ func Init(b *baa.Baa) {
 	}))
 }
 
+//处理跨域和sessionid
 func crossHeader() baa.HandlerFunc {
 	return func(c *baa.Context) {
 		c.Resp.Header().Add("Access-Control-Allow-Origin", "*")
+		//刷新session的过期时间
+		utls.SessionUtls.RefreshSessionExpir(c)
 		c.Next()
+
 	}
 }
 

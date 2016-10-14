@@ -9,6 +9,9 @@ import (
 	//"net/http"
 	"github.com/baa-middleware/gzip"
 	"../controllers"
+	"../utls"
+	"time"
+	"fmt"
 )
 
 func Router(app *baa.Baa) {
@@ -25,6 +28,9 @@ func Router(app *baa.Baa) {
 
 	//测试使用
 	app.Get("/test", func(b *baa.Context) {
+		fmt.Println(utls.SessionUtls.GetData("aaa",b))
+		utls.SessionUtls.SetData("aaa", time.Now(), b)
+		b.String(200, "test")
 	})
 
 	//帖子信息相关

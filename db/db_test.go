@@ -65,7 +65,7 @@ func Test_GetArticleListByCid(t *testing.T) {
 //[ArticlesDAL.GetDetail]
 func Test_getdetail(t *testing.T) {
 	initConfig()
-	ret,err := ArticlesDAL.GetDetail(2)
+	ret, err := ArticlesDAL.GetDetail(2)
 	t.Log(err)
 	t.Log(ret)
 }
@@ -88,6 +88,15 @@ func Test_regist(t *testing.T) {
 
 	UserInfoDAL.Regist(user)
 	t.Log(user)
+}
+
+//[UserInfoDAL.regist]测试注册用户
+func Test_checkEmailAndLoginname(t *testing.T) {
+	initConfig()
+	user := entity.UserInfo{LoginName:"hhxa", EmailAddr:"222a"}
+	ret := UserInfoDAL.EmailOrLoginNameExist(user)
+	t.Log(ret)
+
 }
 
 //[CategoriesDAL.GetListName]测试获取用户信息
@@ -156,4 +165,11 @@ func Test_io(t *testing.T) {
 	}
 
 	t.Log(ret["mysqldb"])
+}
+
+func Test_timeadd(t *testing.T) {
+	currTime := time.Now()
+
+	t.Log(currTime)
+	t.Log(currTime.Add(1e9))
 }

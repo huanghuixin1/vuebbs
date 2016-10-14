@@ -15,6 +15,10 @@ type ReturnStatus struct {
 const(
 	Ok = 0 //一切正常
 	Error = 1 //出现错误
-
+	ParamError = 2 //参数错误
 	NoData = 100 //没有数据
+
+
+	//用户相关
+	UserExist = 100001
 )

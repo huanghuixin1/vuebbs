@@ -12,6 +12,7 @@ type userInfoDAL struct {
 }
 
 var UserInfoDAL = userInfoDAL{}
+const userTableName = "userInfos"
 
 //注册用户
 func (this *userInfoDAL)Regist(user *entity.UserInfo) {
@@ -58,6 +59,16 @@ func (this *userInfoDAL) GetById(id int) (*entity.UserInfo) {
 	db.Where("id = ? and IsDelete = 0", id).First(user)
 
 	return user
+}
+
+//邮箱或者登录名是否存在
+func (this userInfoDAL) EmailOrLoginNameExist(user entity.UserInfo) bool {
+	db := openDb()
+	defer db.Close()
+
+	var count int
+	db.Table(userTableName).Where("LoginName=? or EmailAddr = ?", user.LoginName, user.EmailAddr).Count(&count)
+	return count > 0
 }
 
 //获取会员总数

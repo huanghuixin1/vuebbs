@@ -11,8 +11,8 @@ type UserInfo struct {
 }
 
 //检测注册信息中的字段
+// 校验不通过返回 true
 func (this UserInfo) CheckRegistFiled() bool {
-
 	if this.NickName == "" ||
 		this.LoginName == "" ||
 		this.LoginPwd == "" ||
@@ -22,8 +22,6 @@ func (this UserInfo) CheckRegistFiled() bool {
 		return false
 	}
 }
-
-
 
 func (UserInfo) TableName() string {
 	return "userinfos"

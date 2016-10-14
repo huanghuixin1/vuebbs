@@ -10,7 +10,7 @@ type categoriesDAL struct {
 
 }
 
-const tableName = "categories"
+const categoryTableName = "categories"
 
 var CategoriesDAL = categoriesDAL{}
 
@@ -20,7 +20,7 @@ func (this *categoriesDAL) GetNameById(id int) string {
 	defer db.Close()
 
 	var category entity.Categories
-	db.Table(tableName).Where("id=?", id).Select("CName").Find(&category)
+	db.Table(categoryTableName).Where("id=?", id).Select("CName").Find(&category)
 	return category.CName;
 }
 
