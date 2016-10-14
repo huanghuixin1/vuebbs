@@ -11,8 +11,8 @@ import (
 	"io/ioutil"
 	"strings"
 	"fmt"
-	"../utls"
 	"encoding/gob"
+	"../utls/sessionUtls"
 )
 
 func Init(b *baa.Baa) {
@@ -53,7 +53,7 @@ func crossHeader() baa.HandlerFunc {
 	return func(c *baa.Context) {
 		c.Resp.Header().Add("Access-Control-Allow-Origin", "*")
 		//刷新session的过期时间
-		utls.SessionUtls.RefreshSessionExpir(c)
+		sessionUtls.SessionUtls.RefreshSessionExpir(c)
 		c.Next()
 
 	}

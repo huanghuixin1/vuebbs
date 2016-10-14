@@ -1,4 +1,4 @@
-package utls
+package stringUtls
 
 type stringUtls struct {
 

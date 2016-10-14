@@ -20,5 +20,6 @@ const(
 
 
 	//用户相关
-	UserExist = 100001
+	UserExist = 100001 //用户已经存在
+	UserNotExist = 100002 //用户不存在
 )

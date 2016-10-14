@@ -1,4 +1,4 @@
-package utls
+package timeUtls
 
 import (
 	"time"

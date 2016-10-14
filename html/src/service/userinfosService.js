@@ -4,6 +4,12 @@ import * as ajaxUtls from "./ajaxUtls";
 //url前缀
 const urlPre = config.host + "/userinfosApi";
 
+//获取当前用户信息
+export function getCurrentUser({success}) {
+    let url = urlPre + "/getCurrent";
+    ajaxUtls.sendGet(url, success);
+}
+
 //获取会员总数
 export function getCount(callback, errCallback) {
     let url = urlPre + "/count";

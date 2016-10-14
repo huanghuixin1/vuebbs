@@ -9,7 +9,7 @@ import (
 	//"net/http"
 	"github.com/baa-middleware/gzip"
 	"../controllers"
-	"../utls"
+	"../utls/sessionUtls"
 	"time"
 	"fmt"
 )
@@ -28,8 +28,8 @@ func Router(app *baa.Baa) {
 
 	//测试使用
 	app.Get("/test", func(b *baa.Context) {
-		fmt.Println(utls.SessionUtls.GetData("aaa",b))
-		utls.SessionUtls.SetData("aaa", time.Now(), b)
+		fmt.Println(sessionUtls.SessionUtls.GetData("aaa",b))
+		sessionUtls.SessionUtls.SetData("aaa", time.Now(), b)
 		b.String(200, "test")
 	})
 
@@ -43,6 +43,7 @@ func Router(app *baa.Baa) {
 	//用户相关
 	app.Group("/userinfosApi", func() {
 		app.Get("/count", controllers.UsersController.GetCount)// 获取用户总数
+		app.Get("/getCurrent", controllers.UsersController.GetCurrent)// 获取当前用户信息
 		app.Post("/regist", controllers.UsersController.Regist)//注册用户
 	})
 

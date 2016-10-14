@@ -5,7 +5,7 @@ import (
 	"../db"
 	"../dto/returnStatus"
 	"../entity"
-	"../utls"
+	"../utls/sessionUtls"
 )
 
 type usersController struct{}
@@ -19,6 +19,15 @@ func (this *usersController) GetCount(b *baa.Context) {
 	userCount := db.UserInfoDAL.GetCount()
 
 	b.JSON(200, returnStatus.ReturnStatus{returnStatus.Ok, userCount})
+}
+
+/**
+ 获取当前用户
+ */
+func (this *usersController) GetCurrent(b *baa.Context) {
+	user := sessionUtls.SessionUtls.GetCurrentUser(b)
+
+	b.JSON(200, returnStatus.ReturnStatus{returnStatus.Ok, user})
 }
 
 
@@ -47,7 +56,7 @@ func (this *usersController) Regist(b *baa.Context) {
 		}
 
 		//添加到session
-		utls.SessionUtls.SetData("userinfo", user)
+		sessionUtls.SessionUtls.SetCurrentUser(user.Id,b)
 
 		//返回用户信息
 		b.JSON(200, returnStatus.ReturnStatus{Status:returnStatus.Ok, Data:user})

@@ -3,7 +3,7 @@ package db
 import (
 	"../entity"
 	"database/sql"
-	"../utls"
+	"../utls/timeUtls"
 	"../entity/userlevel"
 )
 
@@ -17,7 +17,7 @@ const userTableName = "userInfos"
 //注册用户
 func (this *userInfoDAL)Regist(user *entity.UserInfo) {
 	//初始化用户信息
-	user.CreateTime = utls.TimeUtls.GetGTMTimeTamp()
+	user.CreateTime = timeUtls.TimeUtls.GetGTMTimeTamp()
 	user.Level = userlevel.Normal
 	user.IsDelete = false
 
