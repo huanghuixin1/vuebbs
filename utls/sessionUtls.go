@@ -13,7 +13,6 @@ import (
 )
 
 type sessionUtls struct {
-
 }
 
 var SessionUtls = sessionUtls{}
@@ -58,6 +57,7 @@ func (this sessionUtls) RefreshSessionExpir(b *baa.Context) {
 	cacher.Set(cookie.Value, sessionKeyVal, sessionExpirSecond)
 }
 
+//获取当前session的所有键值对(map)
 func (this sessionUtls) getSessionKeyVal(b *baa.Context) map[string]interface{} {
 	sessionIdVal := this.getSessionIdCookie(b).Value
 	cacher := b.DI("cache").(cache.Cacher)
@@ -69,6 +69,7 @@ func (this sessionUtls) getSessionKeyVal(b *baa.Context) map[string]interface{} 
 	return sessionKeyVal
 }
 
+//设置值
 func (this sessionUtls) SetData(key string, val interface{}, b *baa.Context) error {
 	//从缓存中拿到对应的值
 	cacher := b.DI("cache").(cache.Cacher)
@@ -85,6 +86,7 @@ func (this sessionUtls) SetData(key string, val interface{}, b *baa.Context) err
 	return err
 }
 
+//获取值
 func (this sessionUtls) GetData(key string, b *baa.Context) interface{} {
 	kv := this.getSessionKeyVal(b)
 	if kv == nil {

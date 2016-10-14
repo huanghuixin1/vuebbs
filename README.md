@@ -52,9 +52,9 @@ npm run build
 ###用到的相关库
 
 > 前端框架
-* [Vue1 官方网站](http://cn.vuejs.org/)
-* [vue-router 文档](http://vuejs.github.io/vue-router/zh-cn/index.html)
-* [vuex 文档](http://vuex.vuejs.org/zh-cn/index.html)
+* [Vue2 中文文档](http://vuefe.cn/)
+* [vuex2 中文文档](http://vuefe.cn/vuex/)
+* [vuex-router2 中文文档](http://vuefe.cn/vue-router/)
 * [ajax库](https://github.com/fdaciuk/ajax)
 * [hackernews 的 Vue 实现实例项目](https://github.com/vuejs/vue-hackernews)
 

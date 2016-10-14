@@ -5,6 +5,7 @@ import (
 	"../db"
 	"../dto/returnStatus"
 	"../entity"
+	"../utls"
 )
 
 type usersController struct{}
@@ -46,6 +47,7 @@ func (this *usersController) Regist(b *baa.Context) {
 		}
 
 		//添加到session
+		utls.SessionUtls.SetData("userinfo", user)
 
 		//返回用户信息
 		b.JSON(200, returnStatus.ReturnStatus{Status:returnStatus.Ok, Data:user})
