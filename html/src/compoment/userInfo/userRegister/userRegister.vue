@@ -43,11 +43,11 @@
                     NickName: '',
                     EmailAddr: ''
                 },
-                    LoginName: '',
-                    LoginPwd: '',
-                    NickName: '',
-                    EmailAddr: '',
-                    regCfnPwd:''
+                LoginName: '',
+                LoginPwd: '',
+                NickName: '',
+                EmailAddr: '',
+                regCfnPwd:''
             }
         },
         vuerify: {
