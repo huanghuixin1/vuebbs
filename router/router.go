@@ -45,6 +45,7 @@ func Router(app *baa.Baa) {
 		app.Get("/count", controllers.UsersController.GetCount)// 获取用户总数
 		app.Get("/getCurrent", controllers.UsersController.GetCurrent)// 获取当前用户信息
 		app.Post("/regist", controllers.UsersController.Regist)//注册用户
+		app.Post("/login", controllers.UsersController.Login)// 登录
 	})
 
 	//板块相关

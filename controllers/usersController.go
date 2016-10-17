@@ -6,6 +6,7 @@ import (
 	"../dto/returnStatus"
 	"../entity"
 	"../utls/sessionUtls"
+	"golang.org/x/tools/go/gcimporter15/testdata"
 )
 
 type usersController struct{}
@@ -56,9 +57,40 @@ func (this *usersController) Regist(b *baa.Context) {
 		}
 
 		//添加到session
-		sessionUtls.SessionUtls.SetCurrentUser(user.Id,b)
+		sessionUtls.SessionUtls.SetCurrentUser(user.Id, b)
 
 		//返回用户信息
 		b.JSON(200, returnStatus.ReturnStatus{Status:returnStatus.Ok, Data:user})
+	}
+}
+
+//用户登录方法
+func (this *usersController) Login(b *baa.Context) {
+	user := &entity.UserInfo{}
+	user.LoginName = b.Req.PostFormValue("LoginName")
+	user.LoginPwd = b.Req.PostFormValue("LoginPwd")
+	user.EmailAddr = b.Req.PostFormValue("EmailAddr")
+
+	if (user.LoginName == "" && user.EmailAddr == "") || user.LoginPwd == "" {
+		b.JSON(200, returnStatus.ReturnStatus{Status:returnStatus.ParamError})
+	} else {
+		userRet, err := db.UserInfoDAL.Login(user.LoginName, user.EmailAddr, user.LoginPwd)
+
+		//登录过程出现错误
+		if err != nil {
+			b.JSON(200, returnStatus.ReturnStatus{Status:returnStatus.Error, Data:err })
+			return
+		}
+
+		//用户未找到
+		if userRet == nil || userRet.Id <= 0 {
+			b.JSON(200, returnStatus.ReturnStatus{Status:returnStatus.UserNotExist })
+			return
+		}
+
+		//登录成功  存入用户数据
+		sessionUtls.SessionUtls.SetCurrentUser(user.Id, b)
+
+		b.JSON(200, returnStatus.ReturnStatus{Status:returnStatus.Ok, Data:userRet})
 	}
 }
