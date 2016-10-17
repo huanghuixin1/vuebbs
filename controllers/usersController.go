@@ -6,7 +6,6 @@ import (
 	"../dto/returnStatus"
 	"../entity"
 	"../utls/sessionUtls"
-	"golang.org/x/tools/go/gcimporter15/testdata"
 )
 
 type usersController struct{}
