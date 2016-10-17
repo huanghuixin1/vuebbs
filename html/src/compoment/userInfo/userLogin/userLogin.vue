@@ -18,7 +18,7 @@
                 <div class="log_bar"><input id="loginBtn" type="button" value="登录" class="lb_lq_btn"></div>
                 <div id="toQuickLogin" class="to_choose">
 
-                    <router-link to="/register" class="fr" id="registerBtn">注册账户</router-link>
+                    <router-link to="/register" class="lr" id="registerBtn">注册账户</router-link>
                 </div>
             </form>
         </div>

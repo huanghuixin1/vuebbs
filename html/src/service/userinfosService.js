@@ -18,14 +18,11 @@ export function getCount(callback, errCallback) {
 
 /**
  * 用户注册
- * @param LoginName 用户名
- * @param LoginPwd 面膜
- * @param NickName 昵称
- * @param EmailAddr 邮箱地址
+ * @param user 用户信息对象
  * @param success 成功回调
  * @param err 失败回调
  */
-export function registerUser({LoginName, LoginPwd, NickName, EmailAddr, success, err}) {
-    let url = urlPre + "/regist";
-    ajaxUtls.sendPost({url, data: {LoginName, LoginPwd, NickName, EmailAddr}, success, err});
+export function registerUser({user, success, err}) {
+    let url = urlPre + "/Regist";
+    ajaxUtls.sendPost({url, data: {user}, success, err});
 }

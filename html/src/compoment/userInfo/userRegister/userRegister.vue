@@ -23,9 +23,9 @@
                 </p>
                 <div class="log_bar">
 
-                    <input id="registerBtn" type="submit" value="登录" class="lb_lq_btn"></div>
+                    <input id="registerBtn" type="submit" value="注册" class="lb_lq_btn"></div>
                 <div id="toQuickLogin" class="to_choose">
-                    <a class="fr" id="loginBtn">登录</a>
+                    <router-link to="/login" class="lr" id="loginBtn">登录</router-link>
                 </div>
                 <ul><li v-for="err in errors" v-text="err"></li></ul>
             </form>
@@ -34,6 +34,7 @@
 </template>
 
 <script>
+    import * as userinfosService from "../../../service/userinfosService";
     export default{
         data(){
             return {
@@ -71,8 +72,12 @@
         methods: {
             handleSubmit() {
                 if (this.$vuerify.check()) {
-                    //   alert(this.$vuerify.$errors)
-                    alert("ddd")
+                    var registerUser = this.user;
+                    userinfosService.registerUser({
+                        registerUser, success: (ret)=> {
+                            alert(ret);
+                        }
+                    })
                 }
             }
         }

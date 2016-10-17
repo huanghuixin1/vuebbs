@@ -49,13 +49,13 @@ const routes = [
         path:"/login",
         component:(resolve)=>{
             requireCss("/compoment/userInfo/login_register.css");
-            require(["../compoment/userInfo/login_page/login_page.vue"], resolve);
+            require(["../compoment/userInfo/userLogin/userLogin.vue"], resolve);
         }
     },{
         path:"/register",
         component:(resolve)=>{
             requireCss("/compoment/userInfo/login_register.css");
-            require(["../compoment/userInfo/register_page/register_page.vue"], resolve);
+            require(["../compoment/userInfo/userRegister/userRegister.vue"], resolve);
         }
     }];
 
