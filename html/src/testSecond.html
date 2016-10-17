@@ -1,43 +1,11 @@
-<!--测试用的页面-->
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-
-    <title>iScroll demo: probe</title>
-
-    <style>
-        .parent {
-            background: #ddd;
-            position: relative;
-
-        }
-
-        .child {
-            background: red;
-            position: absolute;
-            height: 50%;
-            width: 100%;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <title>aaaaa</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
 </head>
 <body>
-<div class="parent">
-    <div class="child"></div>
-
-<textarea></textarea>
-</div>
+<input type="file" accept="image/*;capture=camera">
 </body>
 </html>
-
-<script>
-    var height = 100;
-    document.querySelector(".parent").style.height = height + "px";
-    document.body.onclick = function () {
-        document.querySelector(".parent").style.height = height + "px";
-        height += 100;
-    }
-
-</script>
