@@ -23,6 +23,6 @@ export function getCount(callback, errCallback) {
  * @param err 失败回调
  */
 export function registerUser({user, success, err}) {
-    let url = urlPre + "/Regist";
+    let url = urlPre + "/regist";
     ajaxUtls.sendPost({url, data: {user}, success, err});
 }

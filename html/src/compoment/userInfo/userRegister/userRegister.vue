@@ -75,7 +75,7 @@
                     var registerUser = this.user;
                     userinfosService.registerUser({
                         registerUser, success: (ret)=> {
-                            alert(ret);
+                            alert(JSON.stringify(ret));
                         }
                     })
                 }
