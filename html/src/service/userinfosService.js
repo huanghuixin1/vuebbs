@@ -24,5 +24,5 @@ export function getCount(callback, errCallback) {
  */
 export function registerUser({user, success, err}) {
     let url = urlPre + "/regist";
-    ajaxUtls.sendPost({url, data: {user}, success, err});
+    ajaxUtls.sendPost({url, data: user, success, err});
 }
