@@ -5,21 +5,21 @@
             <h2>Discuz! 官方站</h2>
         </div>
         <div class="login_set">
-            <form id="loginBox" class="login_set" @submit.prevent="handleSubmit">
+            <form id="loginBox" class="login_set" @submit.prevent="registSubmit">
                 <p>
-                    <input type="text" v-bind="user.LoginName" v-model="LoginName" placeholder="请输入帐户">
+                    <input type="text" v-model="user.LoginName" placeholder="请输入帐户">
                 </p>
                 <p>
-                    <input type="password" v-bind="user.LoginPwd" v-model="LoginPwd"  placeholder="请输入密码">
+                    <input type="password" v-model="user.LoginPwd"  placeholder="请输入密码">
                 </p>
                 <p>
-                    <input type="password" name="regCfnPwd" v-model="regCfnPwd" placeholder="请确认密码">
+                    <input type="password"  v-model="user.regCfnPwd" placeholder="请确认密码">
                 </p>
                 <p>
-                    <input type="text" v-bind="user.NickName" v-model="NickName"  placeholder="请输入昵称">
+                    <input type="text" v-model="user.NickName"  placeholder="请输入昵称">
                 </p>
                 <p>
-                    <input type="text" v-bind="user.EmailAddr" v-model="EmailAddr"  placeholder="请输入邮箱">
+                    <input type="text"  v-model="user.EmailAddr"  placeholder="请输入邮箱">
                 </p>
                 <div class="log_bar">
 
@@ -27,7 +27,7 @@
                 <div id="toQuickLogin" class="to_choose">
                     <router-link to="/login" class="lr" id="loginBtn">登录</router-link>
                 </div>
-                <ul><li v-for="err in errors" v-text="err"></li></ul>
+                <!--<ul><li v-for="err in errors" v-text="err"></li></ul>-->
             </form>
         </div>
     </div>
@@ -42,43 +42,25 @@
                     LoginName: '',
                     LoginPwd: '',
                     NickName: '',
-                    EmailAddr: ''
-                },
-                LoginName: '',
-                LoginPwd: '',
-                NickName: '',
-                EmailAddr: '',
-                regCfnPwd:''
-            }
-        },
-        vuerify: {
-            LoginName:'required',
-            LoginPwd: {
-                test: /\w{4,}/,
-                message: '至少四位字符'
-            },
-            regCfnPwd:{
-                test (val) {
-                    return val === this.LoginPwd
-                },
-                message: '密码输入不一致'
-            }
-        },
-        computed: {
-            errors () {
-                return this.$vuerify.$errors
+                    EmailAddr: '',
+                    regCfnPwd:''
+                }
             }
         },
         methods: {
-            handleSubmit() {
-                if (this.$vuerify.check()) {
-                    var registerUser = this.user;
-                    userinfosService.registerUser({
-                        registerUser, success: (ret)=> {
-                            alert(JSON.stringify(ret));
+            registSubmit() {
+                var user = this.user;
+                userinfosService.registerUser({
+                    user, success: (ret)=> {
+                        if(ret.Status=='2'){
+                            alert("参数错误");
+                        }else if(ret.Status=='100001'){
+                            alert("用户名已存在");
+                        }else{
+                            window.history.go(-1);
                         }
-                    })
-                }
+                    }
+                })
             }
         }
     }

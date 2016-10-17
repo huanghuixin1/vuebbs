@@ -26,3 +26,14 @@ export function registerUser({user, success, err}) {
     let url = urlPre + "/regist";
     ajaxUtls.sendPost({url, data: user, success, err});
 }
+/**
+ * 用户登录
+ * @param user 用户信息对象
+ * @param success 成功回调
+ * @param err 失败回调
+ */
+
+export function loginUser({user, success, err}) {
+    let url = urlPre + "/login";
+    ajaxUtls.sendPost({url, data: user, success, err});
+}
