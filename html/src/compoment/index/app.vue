@@ -11,5 +11,11 @@
 </template>
 
 <script>
-    export default{}
+    export default{
+        methods:{
+            test:()=>{
+                
+            }
+        }
+    }
 </script>
