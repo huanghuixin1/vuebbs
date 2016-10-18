@@ -14,11 +14,11 @@
 </template>
 <script>
 
-    import v_header from '../../header_footer/index_header/index_header.vue';
-    import v_footer from '../../header_footer/index_footer/index_footer.vue';
+    import v_header from '../../../compoment/header_footer/index_header/index_header.vue';
+    import v_footer from '../../../compoment/header_footer/index_footer/index_footer.vue';
 
-    import v_article_item from "../articleItem/articleItem.vue";
-    import v_dropload from "../../loading/dropload.vue"; //下拉加载组件
+    import v_article_item from "../../../compoment/articles/articleItem/articleItem.vue";
+    import v_dropload from "../../../compoment/loading/dropload.vue"; //下拉加载组件
     import store from "./store";
     import {mapGetters, mapActions} from 'vuex';
 

@@ -1,6 +1,6 @@
 "use strict";
 import * as types from "./types";
-import * as typeUtls from "../../utls/typeUtls";
+import * as typeUtls from "../../../compoment/utls/typeUtls";
 import  * as articleService from "../../../service/articlesService";
 
 /**

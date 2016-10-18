@@ -29,9 +29,9 @@
     </article>
 </template>
 <script>
-    import v_header from '../../header_footer/index_header/index_header.vue';
-    import v_authorinfo from "../../userInfo/authorInfo/authorInfo.vue";
-    import v_replaybox from "../replayBox/replaybox.vue";
+    import v_header from '../../../compoment/header_footer/index_header/index_header.vue';
+    import v_authorinfo from "../../../compoment/userInfo/authorInfo/authorInfo.vue";
+    import v_replaybox from "../../../compoment/articles/replayBox/replaybox.vue";
 
     import * as articleService from "../../../service/articlesService";
 

@@ -2,7 +2,7 @@ import v_app from "../compoment/index/app.vue";
 import VueRouter from "vue-router";
 import Vue from "vue";
 import {requireCss} from "../common/_require";
-import v_articleList from "../compoment/articles/articleList/articleList.vue";
+import v_articleList from "../views/articles/articleList/articleList.vue";
 
 
 Vue.use(VueRouter);
@@ -42,8 +42,8 @@ const routes = [
     {
         path: "/articles/detail/:id",
         component: (resolve) => {
-            requireCss("/compoment/articles/articleDetail/articleDetail.css");
-            require(["../compoment/articles/articleDetail/articleDetail.vue"], resolve);
+            requireCss("/views/articles/articleDetail/articleDetail.css");
+            require(["../views/articles/articleDetail/articleDetail.vue"], resolve);
         }
     },{
         path:"/login",
