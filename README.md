@@ -30,6 +30,14 @@ npm run build
 - html  --- 静态文件
   - gulpfile.js gulp的脚本 
   - src  源代码目录
+    - common 公共库
+    - compoment 存放vue组件
+    - entryfile 放入口文件的js和scss
+    - imgs 存放图片
+    - service 访问服务器接口的部分
+    - vendor 存放第三方的库
+    - views 用于显示的vue组件
+    - app.html 入口的html文件
   - dist 将src编译后的文件目录
   - imgs 存放图片
 ```
