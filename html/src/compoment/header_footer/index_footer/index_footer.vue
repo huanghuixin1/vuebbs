@@ -15,13 +15,13 @@
                 <i class="icon iconfont">&#xe615;</i>发帖
             </a>
             <!--更多-->
-            <a href="javascript:void(0);" id="info_center" class="moreC db">
-                <i class="icon iconfont circle">&#xe633;</i>
+            <a href="javascript:void(0);" id="info_center" class="moreC db" @click="options()">
+                <i class="icon iconfont circle">选项</i>
             </a>
         </div>
     </footer>
 </template>
-<script>
+<script lang="babel">
     export default{
         methods: {
             publish: function () {
@@ -31,6 +31,9 @@
             back(){
                 alert("这个也点不得,点旁边的模块");
                 return false;
+            },
+            options(){
+                this.$store.dispatch("IsShowRightDialog", true);
             }
         }
     }

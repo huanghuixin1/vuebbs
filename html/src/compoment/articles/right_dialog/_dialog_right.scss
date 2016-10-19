@@ -1,0 +1,52 @@
+@include exports("compoment/articles/right_dialog") {
+    .articlelist-dialogright-container {
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.6);
+        position: fixed;
+        top: 0;
+        left: 0;
+        transform: translateX(100%);
+        transition: all 120ms ease 0ms;
+
+        &.articlelist-dialogright-container-show{
+            transform: translateX(0);
+        }
+    }
+    .articlelist-dialogright {
+        width: 50%;
+        background: #f8f8f8;
+        position: absolute;
+        height: 100%;
+        right:0;
+
+        h3{
+            background: #769cdc;
+            text-align: center;
+            color: #fff;
+            line-height: 30px;
+        }
+
+        .dialogright-types{
+            color: #6c6f72;
+
+            >li{
+                border-bottom: 1px solid #ededed;
+                line-height: 32px;
+                padding: 0 10px;
+
+                i{
+                    display: none;
+                    float: right;
+                }
+
+                &.dialogright-types-selected{
+                    color: #769cdc;
+                    i{
+                        display: inline-block;
+                    }
+                }
+            }
+        }
+    }
+}

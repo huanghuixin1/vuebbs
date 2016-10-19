@@ -41,8 +41,9 @@ const routes = [
     },
     {
         path: "/articles/detail/:id",
-        component: (resolve) => {
+        component: resolve => {
             requireCss("/views/articles/articleDetail/articleDetail.css");
+
             require(["../views/articles/articleDetail/articleDetail.vue"], resolve);
         }
     },{

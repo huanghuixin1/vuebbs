@@ -32,3 +32,7 @@ export const setArticleList = ({commit, state}, {cidOrData, minId, maxId, callba
 export const ClearList = ({commit})=>{
     commit(types.ClearList);
 } ;
+
+export const IsShowRightDialog = ({commit}, yesorno)=>{
+    commit(types.IsShowRightDialog, yesorno);
+};

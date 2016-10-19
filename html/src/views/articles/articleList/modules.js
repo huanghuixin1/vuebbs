@@ -1,7 +1,8 @@
-import {SetList,ClearList} from "./types";
+import {SetList,ClearList,IsShowRightDialog} from "./types";
 
 const state = {
-    listData: [] //列表数据
+    listData: [], //列表数据
+    showRightDialog:false //是否显示右边的弹出框
 };
 
 const mutations = {
@@ -17,6 +18,11 @@ const mutations = {
     //清除list数据
     [ClearList](state){
         state.listData = [];
+    },
+
+    //是否显示右边的弹出框
+    [IsShowRightDialog](state, yesorno){
+        state.showRightDialog = yesorno;
     }
 };
 

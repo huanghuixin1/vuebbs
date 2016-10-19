@@ -10,15 +10,19 @@
         </article>
 
         <v_footer></v_footer>
+
+        <v_right_dialog></v_right_dialog>
     </article>
 </template>
-<script>
+<script lang="babel">
 
     import v_header from '../../../compoment/header_footer/index_header/index_header.vue';
     import v_footer from '../../../compoment/header_footer/index_footer/index_footer.vue';
 
     import v_article_item from "../../../compoment/articles/articleItem/articleItem.vue";
     import v_dropload from "../../../compoment/loading/dropload.vue"; //下拉加载组件
+
+    import v_right_dialog from "../../../compoment/articles/right_dialog/dialog_right.vue";
     import store from "./store";
     import {mapGetters, mapActions} from 'vuex';
 
@@ -26,10 +30,11 @@
 
     export default {
         computed: mapGetters({
-            listData: 'articleList'
+            listData: 'articleList',
+            isShowDialog : "isShowRightDialog"
         }),
         components: {
-            v_article_item, v_dropload, v_header, v_footer
+            v_article_item, v_dropload, v_header, v_footer,v_right_dialog
         },
         beforeCreate() {
             //设置头部显示信息
