@@ -48,14 +48,14 @@ const routes = [
     },{
         path:"/login",
         component:(resolve)=>{
-            requireCss("/compoment/userInfo/login_register.css");
-            require(["../compoment/userInfo/userLogin/userLogin.vue"], resolve);
+            requireCss("/common/login_register.css");
+            require(["../views/userInfo/userLogin/userLogin.vue"], resolve);
         }
     },{
         path:"/register",
         component:(resolve)=>{
-            requireCss("/compoment/userInfo/login_register.css");
-            require(["../compoment/userInfo/userRegister/userRegister.vue"], resolve);
+            requireCss("/common/login_register.css");
+            require(["../views/userInfo/userRegister/userRegister.vue"], resolve);
         }
     }];
 
