@@ -24,15 +24,18 @@
 
     import v_right_dialog from "../../../compoment/articles/right_dialog/dialog_right.vue";
     import store from "./store";
-    import {mapGetters, mapActions} from 'vuex';
 
     let cid;//当前url的模块id
 
     export default {
-        computed: mapGetters({
-            listData: 'articleList',
-            isShowDialog : "isShowRightDialog"
-        }),
+        computed:{
+            listData(){
+                return this.$store.state.articleList.listData;
+            },
+            isShowDialog(){
+                return this.$store.state.articleList.showRightDialog
+            }
+        },
         components: {
             v_article_item, v_dropload, v_header, v_footer,v_right_dialog
         },

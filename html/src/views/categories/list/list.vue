@@ -14,10 +14,9 @@
 
 </template>
 
-<script>
-    import v_header from "../../header_footer/index_header/index_header.vue";
-    import v_footer from "../../header_footer/footer_onlyback/footer_onlyback.vue";
-    import {mapGetters, mapActions} from 'vuex';
+<script lang="babel">
+    import v_header from "../../../compoment/header_footer/index_header/index_header.vue";
+    import v_footer from "../../../compoment/header_footer/footer_onlyback/footer_onlyback.vue";
 
     import * as categoriesApi from "../../../service/categoriesService";
 

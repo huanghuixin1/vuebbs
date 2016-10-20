@@ -23,3 +23,8 @@ export function getQueryString(name) {
     else
         return null;
 }
+
+export function setUrlParam(key, val) {
+    //判断url上是否有该参数
+
+}

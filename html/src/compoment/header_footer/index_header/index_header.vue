@@ -15,21 +15,32 @@
         </section>
     </header>
 </template>
-<script>
-    import {mapGetters, mapActions} from 'vuex';
+<script lang="babel">
+
     import {getQueryString} from "../../utls/urlUtls";
 
+    let thisState;
     export default {
-        computed: mapGetters({
-            title: 'title',
-            totalMembers: "totalMembers",
-            totalArticles: "totalArticles",
-            isShowDetail: "isShowHeaderDetail" //是否显示头部的详情
-        }),
-
+        beforeCreate(){
+            thisState = this.$store.state.index_header;
+        },
+        computed: {
+            title(){
+                return thisState.title;
+            },
+            totalMembers(){
+                return thisState.totalMembers;
+            },
+            totalArticles(){
+                return thisState.totalArticles;
+            },
+            isShowDetail(){
+                return thisState.isShowHeaderDetail;
+            }
+        },
         created: function () {
             //如果显示详细信息 才初始化数据
-            if(this.isShowDetail){
+            if (this.isShowDetail) {
                 //先初始化一次信息
                 this.$store.dispatch("SetTotalMembers");
                 let cid = this.$route.query["cid"] || 0;

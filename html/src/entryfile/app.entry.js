@@ -18,8 +18,8 @@ const routes = [
     {
         path: "/categories/list", ////板块列表
         component: (resolve)=> {
-            requireCss("/compoment/categories//list/list.css");
-            require(["../compoment/categories/list/list.vue"], resolve);
+            requireCss("/views/categories//list/list.css");
+            require(["../views/categories/list/list.vue"], resolve);
         }
     },
     {

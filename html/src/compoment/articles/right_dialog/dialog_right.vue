@@ -5,8 +5,8 @@
 
             <ul class="dialogright-types">
                 <li class="dialogright-types-selected">全部 <i>[ok]</i></li>
-                <li>公告 <i>[ok]</i></li>
-                <li>待解决 <i>[ok]</i></li>
+                <li @click="setType(1)">公告 <i>[ok]</i></li>
+                <li @click="setType(2)">待解决 <i>[ok]</i></li>
                 <li>已解决 <i>[ok]</i></li>
             </ul>
         </article>
@@ -14,11 +14,18 @@
 </template>
 
 <script lang="babel">
-    import {mapGetters, mapActions} from 'vuex';
+
 
     export default{
-        computed: mapGetters({
-            isShowDialog : "isShowRightDialog"
-        })
+        computed: {
+            isShowDialog(){
+                this.$store.state.articleList.showRightDialog
+            }
+        },
+        methods:{
+            setType(type){
+                window.location = window.location + "?type=" +　type;
+            }
+        }
     }
 </script>
