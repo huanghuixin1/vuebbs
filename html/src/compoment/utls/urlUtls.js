@@ -1,4 +1,4 @@
-export const queryStrings = (function (name) {
+function initQueryString() {
     let search = window.location.hash.split("?")[1];
     if (!search) {
         return [];
@@ -11,20 +11,48 @@ export const queryStrings = (function (name) {
     }
 
     return ret;
-}());
+}
+
+export let queryStrings = initQueryString();
 
 /**
  * @param name 获取的key
- * @param hasHashUrl url上是否有hash
  */
-export function getQueryString(name) {
+export function getQueryString(name, isRefresh = false) {
+    if (isRefresh) {
+        queryStrings = initQueryString();
+    }
     if (name in queryStrings)
         return decodeURI(queryStrings[name]);
     else
         return null;
 }
 
-export function setUrlParam(key, val) {
+/**
+ * 设置url参数, 注: 该方法会重置url
+ * @param key
+ * @param val
+ */
+export function setQueryString(key, val) {
     //判断url上是否有该参数
+    let orignVal = this.getQueryString(key, true);
 
+    let finalParam = key + "=" + val;
+
+    let url = window.location.href;
+    //如果找到了
+    if (orignVal) {
+        url = url.replace(key + "=" + orignVal, finalParam);
+    } else { //如果没找到
+        // 这时候判断url是否已经有了参数
+        if (url.indexOf("?") > 0) {
+            //有 则往后追加
+            url += "&" + finalParam;
+        } else {
+            url += "?" + finalParam;
+        }
+    }
+
+    //最后跳转
+    window.location = url;
 }
