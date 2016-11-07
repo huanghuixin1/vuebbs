@@ -23,12 +23,25 @@ func Router(app *baa.Baa) {
 
 	//转到app.html
 	app.Get("/", func(c *baa.Context) {
-		c.Redirect(301, "/app.html")
+		c.Redirect(301, "/view/articles/list")
+	})
+
+	app.Get("/view/:page(*+)/:info(.+)", func(c *baa.Context) {
+		c.HTML(200, "app.html")
+	})
+	app.Get("/view/:page(*+)/:info(.+)/:info2(.+)", func(c *baa.Context) {
+		c.HTML(200, "app.html")
+	})
+	app.Get("/view/:page(*+)/:info(.+)/:info2(.+)/:info3(.+)", func(c *baa.Context) {
+		c.HTML(200, "app.html")
+	})
+	app.Get("/view/:page(*+)", func(c *baa.Context) {
+		c.HTML(200, "app.html")
 	})
 
 	//测试使用
 	app.Get("/test", func(b *baa.Context) {
-		fmt.Println(sessionUtls.SessionUtls.GetData("aaa",b))
+		fmt.Println(sessionUtls.SessionUtls.GetData("aaa", b))
 		sessionUtls.SessionUtls.SetData("aaa", time.Now(), b)
 		b.String(200, "test")
 	})

@@ -7,7 +7,7 @@
             </a>
 
             <!--板块-->
-            <router-link :to="{ path: '/categories/list'}" class="moduleIcon module">
+            <router-link :to="{ name: 'categories-list'}" class="moduleIcon module">
                 <i class="icon iconfont">&#xe605;</i>模块
             </router-link>
             <!--发帖-->

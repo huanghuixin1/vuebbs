@@ -144,6 +144,7 @@ gulp.task("js", ()=> {
             watch: DEBUG,
             entry: entries("src/**/*.entry.js"),// entries("js/**/*.js"),
             output: {
+                publicPath: '/',
                 filename: "[name]" + (DEBUG ? "" : "-[chunkhash:8]") + ".js"
             },
             module: {
@@ -166,6 +167,7 @@ gulp.task("js", ()=> {
                 ignorePath: path.join(__dirname, ".eslintignore")
             },
             resolve: {
+                root: path.resolve('./src'),
                 extensions: ["", ".js"],
                 alias: {
                     "ajax": path.join(__dirname, "src/vendor/ajax.js")

@@ -5,7 +5,7 @@
         <v_authorinfo :authorinfo="item"></v_authorinfo>
 
         <!--帖子摘要内容-->
-        <router-link :to="{ path: '/articles/detail/' + item.Id}" class="articleItem-content">
+        <router-link :to="{ name:'article-detail', params:{id:item.Id} }" class="articleItem-content">
             <!--标题-->
             <h2>
                 {{item.Title}}
