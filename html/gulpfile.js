@@ -80,8 +80,11 @@ gulp.task("html", DEBUG ? "" : ["js"], ()=> {
             var resuJson = JSON.parse(data.toString());
             var jsAssets = {}; //最后需要替换的字符串
             for (var key in resuJson) {
-                if (resuJson[key].hasOwnProperty("js"))
-                    jsAssets[key + ".js"] = resuJson[key].js;
+                if (resuJson[key].hasOwnProperty("js")){
+                    let temp = resuJson[key].js;
+                    jsAssets[key + ".js"] = temp.substr(1,temp.length - 1)
+                }
+
                 if (resuJson[key].hasOwnProperty("css")) {
                     jsAssets[key + ".scss"] = resuJson[key].css;
 
